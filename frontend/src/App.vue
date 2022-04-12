@@ -1,17 +1,21 @@
-<script setup>
+<script>
+import loginVue from './components/login.vue';
+
+export default{
+  name: 'app',
+  components:{
+    loginVue
+  },
+}
 </script>
 
 <template>
-<div>
 
-  <h1>welcome Groupomania</h1>
-</div>
-
-
+  <loginVue />  <!-- Mon template des Login avec bootstrap -->
 </template>
 
 <style>
-h1{
-  color:  red;
-}
+
 </style>
+
+  
