@@ -1,4 +1,6 @@
 <script>
+import cardVue from "./card.vue"
+
 export default {
   name:'homeVue'
 }
@@ -22,7 +24,11 @@ export default {
      </div>
     </div>
   </form>
+  <br>
+<cardVue />
 </div>
+
+
 </template>
 
 <style>

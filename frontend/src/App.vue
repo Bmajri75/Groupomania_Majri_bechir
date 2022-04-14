@@ -8,15 +8,18 @@ export default{
   components:{
     headerNavbarVue,
     loginVue,
-    homeVue
+    homeVue,
 
   },
 }
 </script>
 
 <template>
+<div>
 <headerNavbarVue />
  <router-view></router-view> <!-- Mon template des Login avec bootstrap -->
+  
+</div>
 
 </template>
 
