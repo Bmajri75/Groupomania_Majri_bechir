@@ -12,12 +12,14 @@ import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 // composant des Routes
 import loginVue from './components/login.vue'
 import headerVue from './components/header.vue'
-//import HomeViewVue from './views/HomeView.vue'
+import homePageVue from './components/home.vue'
 
 
 const routes = [
   { path: '/', name: 'headerVue', component: headerVue },
-  { path: '/login', name: 'loginVue', component: loginVue }
+  { path: '/login', name: 'loginVue', component: loginVue },
+  { path: '/home', name: 'homepage', component: homePageVue }
+
 ]
 
 const router = createRouter ({

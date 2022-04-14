@@ -5,11 +5,15 @@ export default {
 </script>
 
 <template>
-   <header class="p-3 headerColor text-white">
+   <header class="p-1 headerColor text-white">
+
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-3" width="50" height="50" role="img" aria-label="groupomania"><use xlink:href="../../public/Groupomania_Logos+(3)/icon-left-font-monochrome-black.svg"/></svg>
+        </a>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><router-link to="/home" class="nav-link  px-3 btn text-white">Acceuil</router-link></li>
+          <li><router-link to="/home" class="nav-link  px-3 btn text-white">Home</router-link></li>
           <li><router-link to="/profile" class="nav-link  px-3 btn text-white">Profile</router-link></li>
           <li><router-link to="/profile/amis" class="nav-link  px-3 btn text-white">Amis</router-link></li>
           <li><router-link to="/contact" class="nav-link  px-3 btn text-white">Contact</router-link></li>

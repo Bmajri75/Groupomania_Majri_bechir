@@ -1,13 +1,14 @@
 <script>
 import loginVue from './components/login.vue';
 import headerNavbarVue from './components/header.vue';
-
+import homeVue from './components/home.vue';
 
 export default{
   name: 'App',
   components:{
     headerNavbarVue,
-    loginVue
+    loginVue,
+    homeVue
 
   },
 }
