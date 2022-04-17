@@ -49,7 +49,7 @@ name: 'Login',
 </div>
   
 </template>
-<style>
+<style scoped>
 
 html,
 body {

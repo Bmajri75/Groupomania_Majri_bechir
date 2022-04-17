@@ -6,16 +6,83 @@ export default{
 </script>
 
 <template>
-<div class="card border-primary mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body text-primary">
-    <h5 class="card-title">Primary card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+<div>
+  <div class="card mb-3" style="max-width: 540px;">
+        <div class="card-header">@pseudo</div>
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../public/icon.svg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Commentaire</h5>
+        <p class="card-text">Mon commentaire c'est sa.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+       <button type="button" class="btn btn-outline-primary">👍</button>  
+       <button type="button" class="btn btn-outline-danger">👎</button> 
+      </div>
+    </div>
   </div>
 </div>
+
+<div class="card mb-3" style="max-width: 540px;">
+        <div class="card-header">@pseudo</div>
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../public/icon.svg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Commentaire</h5>
+        <p class="card-text">Mon commentaire c'est sa.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+       <button type="button" class="btn btn-outline-primary">👍</button>  
+       <button type="button" class="btn btn-outline-danger">👎</button> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card mb-3" style="max-width: 540px;">
+        <div class="card-header">@pseudo</div>
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../public/icon.svg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Commentaire</h5>
+        <p class="card-text">Mon commentaire c'est sa.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+       <button type="button" class="btn btn-outline-primary">👍</button>  
+       <button type="button" class="btn btn-outline-danger">👎</button> 
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
   
 
 </template>
 
-<style>
+<style scoped>
+.statusButton{
+  margin: 0 auto;
+display: flex;
+justify-content: center;
+}
+.card{
+  width: 100%;
+  margin: 50px;
+
+}
+
+img{
+  object-fit: cover;
+
+}
+
 </style>

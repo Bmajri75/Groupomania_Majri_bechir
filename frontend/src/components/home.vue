@@ -1,8 +1,12 @@
 <script>
-import cardVue from "./card.vue"
+import cardVue from './card.vue'
 
 export default {
-  name:'homeVue'
+  name:'homeVue',
+  components:{
+   cardVue
+
+  },
 }
 </script>
 
@@ -25,17 +29,21 @@ export default {
     </div>
   </form>
   <br>
+<hr class="separet__hr">
 <cardVue />
 </div>
 
 
 </template>
 
-<style>
+<style scoped>
 .button__form{
   margin-top: 30px;
 }
 #floatingTextarea{
   height: 150px;
+}
+.separet__hr {
+  color: #FD2D01;
 }
 </style>
