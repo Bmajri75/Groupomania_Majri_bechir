@@ -33,10 +33,10 @@ export default {
 
         <div class="text-end">
           <button type="button" class="btn btn-outline-light me-2 ">
-            <router-link to="/login" class="link-light text-decoration-none"> Login</router-link>
+            <router-link to="/login" class="link-light text-decoration-none"> Connexion</router-link>
           </button>
           <button type="button" class="btn btn btn-outline-light btn-primary ">
-            <router-link to="/singup" class="link-light text-decoration-none">Sign-up </router-link>
+            <router-link to="/inscription" class="link-light text-decoration-none">Inscription </router-link>
           </button>
         </div>
       </div>

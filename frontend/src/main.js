@@ -12,11 +12,13 @@ import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 // composant des Routes
 import loginVue from './components/login.vue'
 import homePageVue from './components/home.vue'
+import inscriptionVue from './components/inscription.vue'
 
 
 const routes = [
   { path: '/login', name: 'loginVue', component: loginVue },
-  { path: '/home', name: 'homepage', component: homePageVue }
+  { path: '/home', name: 'homepage', component: homePageVue },
+  { path: '/inscription', name: 'inscriptionVue', component: inscriptionVue }
 
 ]
 
