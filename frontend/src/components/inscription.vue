@@ -38,8 +38,6 @@ export default {
 
         <div class="d-flex justify-content-evenly">
           <button type="submit" class="btn btn-primary">Inscription 👌</button>
-          <button type="submit" class="btn btn-primary">Supprimer mon compte 🚫</button>
-
         </div>
       </form>
     </div>
