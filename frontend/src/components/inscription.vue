@@ -7,11 +7,15 @@ export default {
 <template>
   <div class="container-sm">
     <div class="border border-5 d-flex flex-column justify-content-center">
-      <div class=" text-center">
-        <img src="../../public/Groupomania_Logos+(3)/icon.png"
-          class="figure-img img-fluid rounded-circle  mx-auto d-block border-dark" alt="Photo de profil">
-      </div>
       <form class="row g-4 p-4">
+        <div class=" text-center">
+          <img src="../../public/Groupomania_Logos+(3)/icon.png"
+            class="figure-img img-fluid rounded-circle  mx-auto d-block border-dark" alt="Photo de profil">
+          <div>
+            <input type="file" id="picture" name="picture" multiple>
+          </div>
+        </div>
+
         <div class="col-md-4">
           <label for="prenom" class="form-label">prenonom</label>
           <input type="text" class="form-control" id="prenom" required>
