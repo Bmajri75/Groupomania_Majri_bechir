@@ -14,13 +14,15 @@ import loginVue from './components/login.vue'
 import homePageVue from './components/home.vue'
 import inscriptionVue from './components/inscription.vue'
 import profilVue from './components/profil.vue'
+import friendsListVue from './components/friendsList.vue'
 
 
 const routes = [
   { path: '/login', name: 'loginVue', component: loginVue },
   { path: '/home', name: 'homepage', component: homePageVue },
   { path: '/inscription', name: 'inscriptionVue', component: inscriptionVue },
-  { path: '/profil', name: 'profilVue', component: profilVue}
+  { path: '/profil', name: 'profilVue', component: profilVue},
+  { path: '/amis', name:'friendsListVue', component: friendsListVue}
 
 ]
 

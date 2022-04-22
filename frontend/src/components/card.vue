@@ -1,6 +1,10 @@
 <script>
+import commentVue from "./comment.vue"
 export default {
-  name: 'card'
+  name: 'card',
+  components: {
+    commentVue
+  }
 }
 
 </script>
@@ -16,8 +20,9 @@ export default {
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">Commentaire</h5>
+            <h5 class="card-title fs-6">Comptable.</h5>
             <p class="card-text">Mon commentaire c'est sa.</p>
+            <commentVue />
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             <button type="button" class="btn btn-outline-primary">👍</button>
             <button type="button" class="btn btn-outline-danger">👎</button>
@@ -34,7 +39,7 @@ export default {
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">Commentaire</h5>
+            <h5 class="card-title fs-6">Resource humaine</h5>
             <p class="card-text">Mon commentaire c'est sa.</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             <button type="button" class="btn btn-outline-primary">👍</button>
@@ -53,8 +58,8 @@ export default {
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">Commentaire</h5>
-            <p class="card-text">Mon commentaire c'est sa.</p>
+            <h5 class="card-title fs-6">Vendeur de reve</h5>
+            <p class="card-text">ouai bon on fait quoi</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>

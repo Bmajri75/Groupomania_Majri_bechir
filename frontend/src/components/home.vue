@@ -13,7 +13,6 @@ export default {
 <template>
 
   <div class="container-sm w-50 p-3">
-    <h1>HOME</h1>
     <div>
       <textarea class="form-control" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"></textarea>
     </div>

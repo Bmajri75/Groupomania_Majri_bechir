@@ -4,6 +4,7 @@ import headerNavbarVue from './components/header.vue';
 import homeVue from './components/home.vue';
 import inscriptionVud from './components/inscription.vue';
 import profilVue from './components/profil.vue';
+import friendsListVue from './components/friendsList.vue';
 
 
 export default {
@@ -13,7 +14,8 @@ export default {
     loginVue,
     homeVue,
     inscriptionVud,
-    profilVue
+    profilVue,
+    friendsListVue
 
   },
 }
