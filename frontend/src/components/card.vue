@@ -77,11 +77,6 @@ export default {
   justify-content: center;
 }
 
-.card {
-  width: 100%;
-  margin: 50px;
-
-}
 
 .buttonLikes {
   display: flex;

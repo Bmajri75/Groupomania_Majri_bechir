@@ -41,7 +41,7 @@ export default {
         </div>
 
         <div class="d-flex justify-content-evenly">
-          <button type="submit" class="btn btn-primary">Inscription 👌</button>
+          <button type="submit" class="btn btn-primary">Valider 👌</button>
         </div>
       </form>
     </div>

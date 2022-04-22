@@ -20,7 +20,7 @@ export default {
             <router-link to="/home" class="nav-link  px-3 btn text-white">Home</router-link>
           </li>
           <li>
-            <router-link to="/profile" class="nav-link  px-3 btn text-white">Profile</router-link>
+            <router-link to="/profil" class="nav-link  px-3 btn text-white">Profil</router-link>
           </li>
           <li>
             <router-link to="/profile/amis" class="nav-link  px-3 btn text-white">Amis</router-link>

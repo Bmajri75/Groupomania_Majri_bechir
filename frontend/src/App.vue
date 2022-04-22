@@ -3,6 +3,7 @@ import loginVue from './components/login.vue';
 import headerNavbarVue from './components/header.vue';
 import homeVue from './components/home.vue';
 import inscriptionVud from './components/inscription.vue';
+import profilVue from './components/profil.vue';
 
 
 export default {
@@ -11,7 +12,8 @@ export default {
     headerNavbarVue,
     loginVue,
     homeVue,
-    inscriptionVud
+    inscriptionVud,
+    profilVue
 
   },
 }
