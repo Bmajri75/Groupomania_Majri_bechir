@@ -14,7 +14,7 @@ export default {
       <hr>
     </div>
     <img src="../../public/icon.svg" class="image-card card-img-top rounded-circle" alt="avatar">
-    <div class="d-flex flex-column">
+    <div class="block-comment">
       <p> @chris à dit : </p>
       <p>j'aimerai bien essayer</p>
       <hr>
@@ -24,6 +24,11 @@ export default {
       <p> @jungo à dit :</p>
       <p>waaa tu fais ça comment ?</p>
       <hr>
+    </div>
+    <div class="input-group">
+      <span class="input-group-text">commentaire</span>
+      <textarea class="form-control" aria-label="With textarea"></textarea>
+      <button type="button" class="btn btn-outline-primary">Envoyer</button>
     </div>
   </div>
 </template>

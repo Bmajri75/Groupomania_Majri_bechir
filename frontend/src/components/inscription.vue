@@ -6,8 +6,8 @@ export default {
 
 <template>
   <div class="container-sm">
-    <div class="border border-5 d-flex flex-column justify-content-center">
-      <form class="row g-4 p-4">
+    <div class="rounded-3 border border-5 d-flex flex-column justify-content-center" style="border-color:#FD2D01">
+      <form class=" row g-4 p-4">
         <div class=" text-center">
           <img src="../../public/Groupomania_Logos+(3)/icon.png"
             class="figure-img img-fluid rounded-circle  mx-auto d-block border-dark" alt="Photo de profil">
@@ -57,5 +57,9 @@ img {
 
 .container-sm {
   margin-top: 100px;
+}
+
+.formulair-container {
+  border-color: #FD2D01;
 }
 </style>

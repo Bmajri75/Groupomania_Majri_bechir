@@ -1,10 +1,9 @@
 <script>
-import cardVue from './card.vue'
-
+import postVue from "./post.vue"
 export default {
   name: 'homeVue',
   components: {
-    cardVue
+    postVue
 
   },
 }
@@ -12,7 +11,7 @@ export default {
 
 <template>
 
-  <div class="container-sm w-50 p-3">
+  <div class="container-xxl  p-3">
     <div>
       <textarea class="form-control" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"></textarea>
     </div>
@@ -29,7 +28,8 @@ export default {
     </form>
     <br>
     <hr class="separet__hr">
-    <cardVue />
+    <postVue />
+    <postVue />
   </div>
 
 
