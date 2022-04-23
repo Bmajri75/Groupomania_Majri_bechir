@@ -1,5 +1,5 @@
 <script>
-import postVue from "./post.vue"
+import postVue from "../components/post.vue"
 export default {
   name: 'homeVue',
   components: {

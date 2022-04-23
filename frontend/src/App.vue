@@ -1,21 +1,21 @@
 <script>
-import loginVue from './components/login.vue';
-import headerNavbarVue from './components/header.vue';
-import homeVue from './components/home.vue';
-import inscriptionVud from './components/inscription.vue';
-import profilVue from './components/profil.vue';
-import friendsListVue from './components/friendsList.vue';
+import loginVue from './pages/login.vue';
+import navbarVue from './components/layout/navBar.vue';
+import homeVue from './pages/home.vue';
+import inscriptionVue from './pages/inscription.vue';
+import profilVue from './pages/profil.vue';
+import friendsPageVue from './pages/friendsPage.vue';
 
 
 export default {
   name: 'App',
   components: {
-    headerNavbarVue,
+    navbarVue,
     loginVue,
     homeVue,
-    inscriptionVud,
+    inscriptionVue,
     profilVue,
-    friendsListVue
+    friendsPageVue
 
   },
 }
@@ -23,7 +23,7 @@ export default {
 
 <template>
   <div>
-    <headerNavbarVue />
+    <navbarVue />
     <router-view></router-view> <!-- Mon template des Login avec bootstrap -->
 
   </div>

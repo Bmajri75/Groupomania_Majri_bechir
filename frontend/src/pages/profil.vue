@@ -10,7 +10,8 @@ export default {
 
     <div class=" card_contener card mt-5">
       <img src="../../public/Groupomania_Logos+(3)/icon.png"
-        class="card-img-top figure-img img-fluid rounded-circle  mx-auto d-block border-dark" alt="Photo de profil">
+        class="card-img-top figure-img img-fluid rounded-circle  mx-auto d-block border-dark border-bottom"
+        alt="Photo de profil">
 
       <h5 class="text-muted card-title fs-2 fw-bold m-3 text-center" id="pseudo">@Pseudo </h5>
 

@@ -15,7 +15,7 @@ export default {
       <div class="card-header">@pseudo</div>
       <div class="row g-0">
         <div class="post-container border-bottom ">
-          <img src="../../public/icon.svg" class="card-img-top border border-5" alt="...">
+          <img src="../../public/icon.svg" class="card-img-top border border-5 " alt="...">
           <div class="post-container__text">
 
             <h5 class="card-title fs-6">Comptable.</h5>
@@ -42,6 +42,10 @@ export default {
   margin-top: 50px;
 }
 
+img {
+  object-fit: contain;
+}
+
 .statusButton {
   margin: 0 auto;
   display: flex;
@@ -58,9 +62,8 @@ export default {
   margin-bottom: 20px;
 }
 
-img {
-  object-fit: cover;
-
+.post-container img {
+  object-fit: contain;
 }
 
 .post-container__text {

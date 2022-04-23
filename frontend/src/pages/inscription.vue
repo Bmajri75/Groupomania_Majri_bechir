@@ -10,7 +10,7 @@ export default {
       <form class=" row g-4 p-4">
         <div class=" text-center">
           <img src="../../public/Groupomania_Logos+(3)/icon.png"
-            class="figure-img img-fluid rounded-circle  mx-auto d-block border-dark" alt="Photo de profil">
+            class="figure-img img-fluid rounded-circle  mx-auto d-block rounded-circle border" alt="Photo de profil">
           <div>
             <input type="file" id="picture" name="picture" multiple>
           </div>

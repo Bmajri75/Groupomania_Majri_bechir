@@ -14,12 +14,12 @@ export default {
       <hr>
     </div>
     <img src="../../public/icon.svg" class="image-card card-img-top rounded-circle" alt="avatar">
-    <div class="block-comment">
+    <div class="d-flex flex-column">
       <p> @chris à dit : </p>
       <p>j'aimerai bien essayer</p>
       <hr>
     </div>
-    <img src="../../public/icon.svg" class="image-card card-img-top rounded-circle" alt="avatar">
+    <img src="../../public/icon.svg" class="image-card  rounded-circle border-4" alt="avatar">
     <div class="d-flex flex-column">
       <p> @jungo à dit :</p>
       <p>waaa tu fais ça comment ?</p>
@@ -27,7 +27,7 @@ export default {
     </div>
     <div class="input-group">
       <span class="input-group-text">commentaire</span>
-      <textarea class="form-control" aria-label="With textarea"></textarea>
+      <textarea class="form-control" aria-label="With textarea">... </textarea>
       <button type="button" class="btn btn-outline-primary">Envoyer</button>
     </div>
   </div>
@@ -36,5 +36,10 @@ export default {
 .image-card {
   width: 50px;
   height: 50px;
+}
+
+.form-control {
+
+  resize: none;
 }
 </style>

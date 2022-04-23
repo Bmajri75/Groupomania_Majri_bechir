@@ -9,7 +9,7 @@ export default {
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
         <div class="card">
-          <img src="../../public/icon.svg" class="card-img-top" alt="...">
+          <img src="../../public/icon.svg" class="card-img-top border-bottom rounded-circle" alt="...">
           <div class="card-body">
             <h5 class="card-title">@pseudo</h5>
             <div class="card-text d-flex flex-column d-grid gap-3 align-items-center mb-5">
@@ -22,7 +22,7 @@ export default {
       </div>
       <div class="col">
         <div class="card">
-          <img src="../../public/icon.svg" class="card-img-top" alt="...">
+          <img src="../../public/icon.svg" class="card-img-top border-bottom rounded-circle" alt="...">
           <div class="card-body">
             <h5 class="card-title">@pseudo</h5>
             <div class="card-text d-flex flex-column d-grid gap-3 align-items-center mb-5">
@@ -35,7 +35,7 @@ export default {
       </div>
       <div class="col">
         <div class="card">
-          <img src="../../public/icon.svg" class="card-img-top" alt="...">
+          <img src="../../public/icon.svg" class="card-img-top border-bottom rounded-circle" alt="...">
           <div class="card-body">
             <h5 class="card-title">@pseudo</h5>
             <div class="card-text d-flex flex-column d-grid gap-3 align-items-center mb-5">
@@ -48,7 +48,7 @@ export default {
       </div>
       <div class="col">
         <div class="card">
-          <img src="../../public/icon.svg" class="card-img-top" alt="...">
+          <img src="../../public/icon.svg" class="card-img-top border-bottom rounded-circle" alt="...">
           <div class="card-body">
             <h5 class="card-title">@pseudo</h5>
             <div class="card-text d-flex flex-column d-grid gap-3 align-items-center mb-5">
