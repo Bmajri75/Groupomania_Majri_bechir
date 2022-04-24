@@ -15,7 +15,7 @@ export default {
       <div class="card-header">@pseudo</div>
       <div class="row g-0">
         <div class="post-container border-bottom ">
-          <img src="../../public/icon.svg" class="card-img-top border border-5 " alt="...">
+          <img src="../../public/icon.svg" class="card-img-top border border-5 " alt="Image du post">
           <div class="post-container__text">
 
             <h5 class="card-title fs-6">Comptable.</h5>
@@ -52,9 +52,6 @@ img {
   justify-content: center;
 }
 
-.post-container {
-  height: 10%;
-}
 
 .buttonLikes {
   display: flex;
@@ -64,6 +61,7 @@ img {
 
 .post-container img {
   object-fit: contain;
+  height: 300px;
 }
 
 .post-container__text {

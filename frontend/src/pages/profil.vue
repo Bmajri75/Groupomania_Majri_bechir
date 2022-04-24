@@ -8,7 +8,7 @@ export default {
 <template>
   <div class=" d-flex justify-content-center">
 
-    <div class=" card_contener card mt-5">
+    <div class=" card_contener card mt-2">
       <img src="../../public/Groupomania_Logos+(3)/icon.png"
         class="card-img-top figure-img img-fluid rounded-circle  mx-auto d-block border-dark border-bottom"
         alt="Photo de profil">
@@ -27,8 +27,8 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .card_contener {
-  width: 50%;
+  width: 30%;
 }
 </style>

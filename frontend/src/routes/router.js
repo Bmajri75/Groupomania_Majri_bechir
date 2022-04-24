@@ -22,4 +22,4 @@ const router = createRouter ({
   routes // raccourci pour `routes: routes`
 })
  
-export { router} 
+export default router;

@@ -1,57 +1,56 @@
 <script>
-export default{
-name: 'Login',
-// data() { 
-//   return{
-//      username: "",
-//      password: "",
-//      error: "",
-//   }
-// },
+export default {
+  name: 'Login',
+  // data() { 
+  //   return{
+  //      username: "",
+  //      password: "",
+  //      error: "",
+  //   }
+  // },
 
-// methods: { 
-//   login() {
-//     if(this.username === 'admin' && this.password === 'admin'){
-//       this.router.push('/')
-//     }else{
-//       this.error = " tu n'est pas l'Administrateur"
-//     }
-//   }
-// }
+  // methods: { 
+  //   login() {
+  //     if(this.username === 'admin' && this.password === 'admin'){
+  //       this.router.push('/')
+  //     }else{
+  //       this.error = " tu n'est pas l'Administrateur"
+  //     }
+  //   }
+  // }
 }
 </script>
 <template>
+  <div>
+    <main class="form-signin">
+      <form>
+        <img class="mb-4" src="../../public/Groupomania_Logos+(3)/icon-above-font.svg" alt="logo Groupomania"
+          width="300" height="300">
+        <h1 class="h3 mb-3 fw-normal">Identifie Toi Collegue 👋</h1>
 
-<div>
-  <main class="form-signin">
-  <form>
-    <img class="mb-4" src="../../public/Groupomania_Logos+(3)/icon-above-font.svg" alt="logo Groupomania" width="300" height="300">
-    <h1 class="h3 mb-3 fw-normal">Identifie Toi Collegue 👋</h1>
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
 
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit"> <router-link to="/profile" class="link-light text-decoration-none"> Connexion 🔑</router-link></button>
-    <p class="mt-5 mb-3 text-muted">&copy; BashCoding 2022</p>
-  </form>
-</main>
-</div>
-  
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">
+          <router-link to="/profile" class="link-light text-decoration-none"> Connexion 🔑</router-link>
+        </button>
+        <p class="mt-5 mb-3 text-muted">&copy; BashCoding 2022</p>
+      </form>
+    </main>
+  </div>
 </template>
 <style scoped>
-
-html,
 body {
   height: 100%;
 }
@@ -89,18 +88,18 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
 .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
 </style>

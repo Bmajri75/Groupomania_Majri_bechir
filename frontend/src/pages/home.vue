@@ -11,7 +11,7 @@ export default {
 
 <template>
 
-  <div class="container-xxl  p-3">
+  <div class="container-xl  p-3">
     <div>
       <textarea class="form-control" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"></textarea>
     </div>

@@ -49,7 +49,7 @@ export default {
 
 </template>
 
-<style>
+<style scoped>
 img {
   width: 300px;
   height: 300px;
