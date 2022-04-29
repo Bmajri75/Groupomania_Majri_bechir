@@ -1,10 +1,15 @@
 <script>
+import navBarVue from "../components/layout/navBar.vue"
 export default {
   name: 'inscription',
+  components: {
+    navBarVue
+  }
 }
 </script>
 
 <template>
+  <navBarVue />
   <div class="container-sm">
     <div class="rounded-3 border border-5 d-flex flex-column justify-content-center" style="border-color:#FD2D01">
       <form class=" row g-4 p-4">

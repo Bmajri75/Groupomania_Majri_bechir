@@ -1,10 +1,15 @@
 <script>
+import navBarVue from "../components/layout/navBar.vue"
 export default {
   name: 'friendsList',
+  components: {
+    navBarVue
+  }
 
 }
 </script>
 <template>
+  <navBarVue />
   <div class="container-sm">
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">

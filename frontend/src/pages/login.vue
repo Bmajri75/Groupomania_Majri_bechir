@@ -1,26 +1,45 @@
 <script>
-export default {
-  name: 'Login',
-  // data() { 
-  //   return{
-  //      username: "",
-  //      password: "",
-  //      error: "",
-  //   }
-  // },
+import navBarVue from "../components/layout/navBar.vue"
 
-  // methods: { 
-  //   login() {
-  //     if(this.username === 'admin' && this.password === 'admin'){
-  //       this.router.push('/')
-  //     }else{
-  //       this.error = " tu n'est pas l'Administrateur"
-  //     }
-  //   }
+
+// fonction qui retourne les donnée du formulaire.
+
+const data = () => {
+  // return {
+  //   email: "",
+  //   password: ""
   // }
 }
+
+
+const methods = {
+  verifConnexion() {
+    const email = this.email;
+    const password = this.password;
+
+    console.log(`email : ${email} Password: ${password}`)
+
+  }
+}
+
+
+export default {
+  name: 'Login',
+  components: {
+    navBarVue
+  },
+  data: data,
+  methods: methods
+}
+
+
+
+
+
+
 </script>
 <template>
+  <navBarVue />
   <div>
     <main class="form-signin">
       <form>
@@ -29,12 +48,12 @@ export default {
         <h1 class="h3 mb-3 fw-normal">Identifie Toi Collegue 👋</h1>
 
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com" v-model="email">
+          <label for="email">Email </label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" v-model="password">
+          <label for="floatingPassword"> Password </label>
         </div>
 
         <div class="checkbox mb-3">
@@ -43,7 +62,10 @@ export default {
           </label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">
-          <router-link to="/profile" class="link-light text-decoration-none"> Connexion 🔑</router-link>
+          <router-link to="/profile" class="link-light text-decoration-none" id="connexionButton"
+            v-on:click.prevent="verifConnexion">
+            Connexion 🔑
+          </router-link>
         </button>
         <p class="mt-5 mb-3 text-muted">&copy; BashCoding 2022</p>
       </form>

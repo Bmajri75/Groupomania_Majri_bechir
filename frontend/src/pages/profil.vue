@@ -1,11 +1,16 @@
 <script>
+import navBarVue from "../components/layout/navBar.vue"
 export default {
   name: 'profil',
+  components: {
+    navBarVue
+  }
 
 }
 </script>
 
 <template>
+  <navBarVue />
   <div class=" d-flex justify-content-center">
 
     <div class=" card_contener card mt-2">

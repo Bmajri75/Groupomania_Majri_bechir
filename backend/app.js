@@ -1,0 +1,1 @@
+// ici sa arrive de server.js et renvoie au dossier routes ou il y'a les routes >> ensuite sa vas au middleware pour les controles >> controller qui effectue la logique metier
