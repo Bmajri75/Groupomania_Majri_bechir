@@ -22,11 +22,11 @@ const router = createRouter ({
   routes // raccourci pour `routes: routes`
 })
  
-// router.beforeEach((to, from) => {
-//  const autorizPath = ["/login", "/inscription"]
-//   if (!autorizPath.includes(to.path)) {
-//   router.push('/login');
-// }
-// })
+router.beforeEach((to, from) => {
+ const autorizPath = ["/login", "/inscription"]
+  if (!autorizPath.includes(to.path)) {
+  router.push('/login');
+}
+})
 
 export default router;
