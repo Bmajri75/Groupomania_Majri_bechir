@@ -2,26 +2,25 @@ require('dotenv').config();// dotenv
 
 const mysql = require('mysql');
 
+// je crée les parametre de conexion
 const dbConnection = mysql.createConnection({
-  host: 'localhost',
-  database: 'groupomaniaBase',
-  user: 'root',
-  password: '123456789',
+  host: '127.0.0.1',
+  database: process.env.DB_NAME,
+  user: process.env.DB_ID,
+  password: process.env.DB_PASSWORD,
 });
 
 
+// je me connecte en appelant mes parametre configurer en haut
 dbConnection.connect((err) => {
-  if (err){
-    console.log( `Erreur de connexion a la Base de donneea MY SQL ${err.stack}`);
-  } else {
+  if (err){// si j'ai une erreur renvoir moi l'erreur
+    console.log( `Erreur de connexion a la Base de donneea MY SQL ${err}`);
+  } else {// sinon informe moi que tout est ok et donne moi l'id de conexion
     console.log("Connecté à la base de données MySQL!");
     console.log(` connecter a l'ID : ${dbConnection.threadId}`);
   }
 });
-console.log(dbConnection)
 
 
-// conection a la base ok 
-// voir pourquoi sa na pas marcher 
 
-// j'ai taper la commande ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456789';
+module.exports = dbConnection;
