@@ -1,10 +1,55 @@
 <script>
 import navBarVue from "../components/layout/navBar.vue"
+
+const data = () => {
+  return {
+    prenom: "",
+    nom: "",
+    email: "",
+    password: "",
+
+  }
+}
+
+const methods = {
+  inscriptionValid() {
+
+    // je recupere les donnés de mon formulaire
+    const user = {
+      prenom: this.prenom,
+      nom: this.nom,
+      email: this.email,
+      password: this.password,
+    }
+
+    const options = {
+      method: 'POST', // j'indique que c'est une methode POST car Fetch par defaut envoie un GET
+      body: JSON.stringify(user), // j'indique qu'il sagit de l'objet order sous forme de string pour etre un JSON
+      headers: {
+        // 'Accept': 'application/json', //type application utilisé
+        "Content-Type": "application/json"// je lui dit qu'il faut lire en JSON
+      },
+    };
+    console.log(`email : ${user.email} Password: ${user.password} prenom : ${user.prenom} nom: ${user.nom}`)
+    fetch("http://localhost:8080/api/auth/inscription", options)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+      })
+      .catch(err => {
+        console.log(`vous avez une Erreur !! ${err}`);
+        alert(`Désolé, une erreur est survenur, Merci de revenir plus tard`);
+      })
+  }
+}
+
 export default {
-  name: 'inscription',
+  name: 'Inscription',
   components: {
     navBarVue
-  }
+  },
+  data,
+  methods
 }
 </script>
 
@@ -21,32 +66,25 @@ export default {
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="prenom" required v-model="prenom">
           <label for="prenom" class="form-label">prenonom</label>
-          <input type="text" class="form-control" id="prenom" required>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="nom" required v-model="nom">
           <label for="nom" class="form-label">nom</label>
-          <input type="text" class="form-control" id="nom" required>
-        </div>
-        <div class="col-md-4">
-          <label for="pseudo" class="form-label">Pseudo</label>
-          <div class="input-group">
-            <span class="input-group-text" id="inputGroupPrepend2">@</span>
-            <input type="text" class="form-control" id="pseudo" aria-describedby="pseudo" required>
-          </div>
         </div>
         <div class="col-md-6">
+          <input type="email" class="form-control" id="inputEmail4" required v-model="email">
           <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" required>
         </div>
         <div class="col-md-6">
+          <input type="password" class="form-control" id="password" required v-model="password">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" required>
         </div>
 
         <div class="d-flex justify-content-evenly">
-          <button type="submit" class="btn btn-primary">Valider 👌</button>
+          <button type="submit" class="btn btn-primary" @click.prevent="inscriptionValid">Valider 👌</button>
         </div>
       </form>
     </div>

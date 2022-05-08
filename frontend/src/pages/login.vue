@@ -1,35 +1,27 @@
 <script>
 import navBarVue from "../components/layout/navBar.vue"
 
-
-// fonction qui retourne les donnée du formulaire.
-
-const data = () => {
-  // return {
-  //   email: "",
-  //   password: ""
-  // }
+const verifConnexion = (email, password) => {
+  console.log(`email : ${email} Password: ${password}`)
 }
 
 
-const methods = {
-  verifConnexion() {
-    const email = this.email;
-    const password = this.password;
-
-    console.log(`email : ${email} Password: ${password}`)
-
+const data = () => {
+  return {
+    email: "",
+    password: ""
   }
 }
 
-
 export default {
   name: 'Login',
+  data,
   components: {
     navBarVue
   },
-  data: data,
-  methods: methods
+  methods: {
+    verifConnexion
+  }
 }
 
 
@@ -62,8 +54,8 @@ export default {
           </label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">
-          <router-link to="/profile" class="link-light text-decoration-none" id="connexionButton"
-            v-on:click.prevent="verifConnexion">
+          <router-link to="/profil" class="link-light text-decoration-none" id="connexionButton"
+            @click.prevent="() => verifConnexion(this.email, this.password)">
             Connexion 🔑
           </router-link>
         </button>
@@ -72,6 +64,7 @@ export default {
     </main>
   </div>
 </template>
+
 <style scoped>
 body {
   height: 100%;

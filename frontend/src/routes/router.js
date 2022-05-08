@@ -13,7 +13,6 @@ const routes = [
   { path: '/inscription', name: 'inscriptionVue', component: inscriptionVue },
   { path: '/profil', name: 'profilVue', component: profilVue},
   { path: '/amis', name:'friendsPage', component: friendsPage}
-
 ]
 
 const router = createRouter ({
@@ -22,6 +21,7 @@ const router = createRouter ({
   routes // raccourci pour `routes: routes`
 })
  
+// autorise uniquement les routes /login et /inscription a l'affichage
 router.beforeEach((to, from) => {
  const autorizPath = ["/login", "/inscription"]
   if (!autorizPath.includes(to.path)) {

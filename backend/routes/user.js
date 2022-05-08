@@ -1,15 +1,10 @@
-// !  ici Les rououtes pour l'authantification 
-// require express 
-const express = require('express');
-// require le router
+// Mes Routes
+// !  MES REQUIRE
+const express = require("express");
 const router = express.Router();
+const userController = require("../controllers/user");
 
-const userController = require('../controllers/user')
+// routes inscription
+router.post("/inscription", userController.inscription);
 
-
-
-router.post('/inscription', userController.inscription);
-
-// la route conection
-
- module.exports = router
+module.exports = router;
