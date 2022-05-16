@@ -1,17 +1,24 @@
 <script>
-import navBarVue from "../components/layout/navBar.vue"
+import navBarVue from "../components/layout/navBar.vue";
+
+  const data = () => {
+    return {
+      email: "",
+      password: ""
+    }
+  }
 
 const verifConnexion = (email, password) => {
   console.log(`email : ${email} Password: ${password}`)
-}
 
-
-const data = () => {
-  return {
-    email: "",
-    password: ""
+  if (email !== "bmajri@free.fr" || password !== "1234") {
+    throw new Error(" invalide Identifiant ou Password")
   }
+  const token = "my token test";
+  localStorage.setItem("token", token)
 }
+
+
 
 export default {
   name: 'Login',

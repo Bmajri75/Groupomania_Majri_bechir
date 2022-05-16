@@ -2,28 +2,22 @@
 const bcrypt = require("bcrypt"); // bcrypt pour hashage des mots de passe
 const jswtoken = require("jsonwebtoken");
 const dbConnection = require("../database/mysql.db");
+
+//requier du model
+const User = require("../models/User");
+
 // FONCTION POUT L'inscription
 exports.inscription = (req, res) => {
   // je recupere les email et le pass du body dans des const
   const { nom, prenom, email, password } = req.body;
-  console.log(`====== ici le REQ nom ${req.body.nom}`);
-  console.log(`====== ici le REQ prenom ${req.body.prenom}`);
-  console.log(`====== ici le REQ email ${req.body.email}`);
-  console.log(`====== ici le REQ pass ${req.body.password}`);
 
-  console.log(` ICI ====> LE REQ.BODY ${req}`);
   // hachage du Mdp
   bcrypt
     .hash(password, 10) // hashage 10
     .then((hash) => {
-      console.log(`==================> HASH ${hash}`);
-      const user = {
-        nom: nom,
-        prenom: prenom,
-        email: email,
-        password: hash,
-      };
-      console.log(`====> ICI le USER ===> ${user.password}`);
+      // console.log(`==================> HASH ${hash}`);
+      const user = new User(nom, prenom, email, hash);
+      // console.log(`====> ICI le USER ===> ${user.password}`);
 
       dbConnection.query(
         "INSERT INTO utilisateur SET ?",
@@ -31,9 +25,9 @@ exports.inscription = (req, res) => {
         (err, res, fields) => {
           if (err) {
             console.log(err);
-            res.json(` il y'a une erreur ${err}`);
+            res.json({ message: "il y'a une erreur" });
           } else {
-            console.log(res);
+            res.json({ message: "utilisateur inscrit dans la BD" });
           }
         }
       );
@@ -42,37 +36,70 @@ exports.inscription = (req, res) => {
     .catch((err) => res.status(500).json({ err })); //la reponse si tout vas mal
 };
 
-// // !CREE UN USER sa va le FAIRE
-// // si req par page web = get sinon =post
-// // FONCTION POUR CONEXION
-// exports.login = (req, res, next) => {
-//   userModel.findOne({ email: req.body.email })// je recherche le mail entrer dans la Bd
-//     .then((utilisateur) => {// celui ci sera dans une reponse "utilisateur"
-//       if (!utilisateur) { // si selui ci est fals  retourn
-//         return res.status(401).json({ error: 'utilisateur introuvable' })
-//       }
-//       // verification du password
-//       bcrypt.compare(req.body.password, utilisateur.password)
+// si req par page web = get sinon =post
+// ! FONCTION POUR CONEXION
+exports.login = (req, res, next) => {
+  const { email, password } = req.body;
 
-//         .then((reponseVerif) => {
-//           console.log(reponseVerif)
+  dbConnection.query(
+    "SELECT * FROM utilisateur WHERE email= ?",
+    email,
+    (err, result, fields) => {
+      if (err) {
+        // si j'ai une erreur sur la recherche de la BD
+        console.log(err);
+        res.json(err);
+      } else if (result == 0) {
+        // si la reponse est negatif
+        // si l'user n'existe pas
+        return res.status(404).json({ error: "Utilisateur introuvable" });
+      } else {
+        //  controle du pass
+        // pour tout le reste
+        bcrypt
+          .compare(req.body.password, result[0].password)
+          .then((reponseVerif) => {
+            console.log("RESULTAT DE LA VRIF PASSSSSS=====>>>>");
+            console.log(reponseVerif);
+            // si la reponse de la verification du password est incorect
+            if (!reponseVerif) {
+              return res
+                .status(401)
+                .json({ error: "Le password est incorect" });
+            }
 
-//           if (!reponseVerif) {
-//             return res.status(401).json({ error: 'Le password est incorect' })
-//           }
+            console.log("id=====>>>>");
+            console.log(result[0].id);
+            // si c'est correct
 
-//           res.status(200).json({
-//             // mise en place du token pour le suivie de qui peut faire, le userId et le token seron liee
-//             userId: utilisateur._id,
-//             token: jswtoken.sign(
-//               { userId: utilisateur._id }, // userID prend le ID de l'user
-//               process.env.TOKEN_CODE,
-//               { expiresIn: "24h" }
-//             )
-//           })
+            console.log("TOKENNNNN");
 
-//         })
-//         .catch((error) => { res.status(500).json({ error }) })
-//     })
-//     .catch((err) => { res.status(500).json({ err }) })
-// }
+            // renvoie de l'id et du token de la part du serveur
+            res.status(201).json({
+              userId: result[0].id,
+              token: jswtoken.sign(
+                { userId: result[0].id },
+                process.env.TOKEN_CODE,
+                { expiresIn: "24h" }
+              ),
+            });
+
+            res.json();
+          });
+        // .catch((err) => res.status(500).json({ err })); //la reponse si tout vas mal;
+      }
+    }
+  );
+  // .then(() => res.status(201).json({ message: "Profil Trouvé !" })) // la response si tout vas bien
+
+  //
+
+  //       .catch((error) => {
+  //         res.status(500).json({ error });
+  //       });
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).json({ err });
+  //   });
+  // };
+};
