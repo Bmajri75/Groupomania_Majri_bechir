@@ -21,10 +21,6 @@ export default {
             <h5 class="card-title fs-6">Comptable.</h5>
             <p class="card-text">Mon POST c'est sa.</p>
           </div>
-          <div class="buttonLikes">
-            <button type="button" class="btn btn-outline-primary">👍</button>
-            <button type="button" class="btn btn-outline-danger">👎</button>
-          </div>
         </div>
         <div class=" p-2 text-dark bg-secondary bg-opacity-10 ">
           <commentVue />

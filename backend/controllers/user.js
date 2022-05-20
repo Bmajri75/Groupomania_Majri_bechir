@@ -3,97 +3,82 @@ const bcrypt = require("bcrypt"); // bcrypt pour hashage des mots de passe
 const jswtoken = require("jsonwebtoken");
 const dbConnection = require("../database/mysql.db");
 
-//requier du model
+//requestuier du model
 const User = require("../models/User");
 
 // FONCTION POUT L'inscription
-exports.inscription = (req, res) => {
+exports.inscription = (request, response) => {
   // je recupere les email et le pass du body dans des const
-  const { nom, prenom, email, password } = req.body;
+  const { nom, prenom, email, password } = request.body;
 
   // hachage du Mdp
   bcrypt
     .hash(password, 10) // hashage 10
     .then((hash) => {
-      // console.log(`==================> HASH ${hash}`);
       const user = new User(nom, prenom, email, hash);
       // console.log(`====> ICI le USER ===> ${user.password}`);
 
       dbConnection.query(
         "INSERT INTO utilisateur SET ?",
         user,
-        (err, res, fields) => {
-          if (err) {
-            console.log(err);
-            res.json({ message: "il y'a une erreur" });
+        (error, results, fields) => {
+          if (error) {
+            console.log(error);
+            response.json({ error });
           } else {
-            res.json({ message: "utilisateur inscrit dans la BD" });
+            console.log(results);
+            response.json({ message: "utilisateur Enregistré" });
           }
         }
       );
-    })
-    .then(() => res.status(201).json({ message: "Profil Crèe !" })) // la response si tout vas bien
-    .catch((err) => res.status(500).json({ err })); //la reponse si tout vas mal
+    });
 };
 
-// si req par page web = get sinon =post
+// si request par page web = get sinon =post
 // ! FONCTION POUR CONEXION
-exports.login = (req, res, next) => {
-  const { email, password } = req.body;
+exports.login = (request, response, next) => {
+  const { email, password } = request.body;
 
-  dbConnection.query(
-    "SELECT * FROM utilisateur WHERE email= ?",
-    email,
-    (err, result, fields) => {
-      if (err) {
-        // si j'ai une erreur sur la recherche de la BD
-        console.log(err);
-        res.json(err);
-      } else if (result == 0) {
-        // si la reponse est negatif
-        // si l'user n'existe pas
-        return res.status(404).json({ error: "Utilisateur introuvable" });
-      } else {
-        //  controle du pass
-        // pour tout le reste
-        bcrypt
-          .compare(req.body.password, result[0].password)
-          .then((reponseVerif) => {
-            console.log("RESULTAT DE LA VRIF PASSSSSS=====>>>>");
-            console.log(reponseVerif);
-            // si la reponse de la verification du password est incorect
-            if (!reponseVerif) {
-              return res
-                .status(401)
-                .json({ error: "Le password est incorect" });
-            }
-
-            console.log("id=====>>>>");
-            console.log(result[0].id);
-            // si c'est correct
-
-            console.log("TOKENNNNN");
-
-            // renvoie de l'id et du token de la part du serveur
-            res.status(201).json({
-              userId: result[0].id,
-              token: jswtoken.sign(
-                { userId: result[0].id },
-                process.env.TOKEN_CODE,
-                { expiresIn: "24h" }
-              ),
+  // recherche de l'User dans la BDD
+  dbConnection // <= je me connecte
+    .query(
+      "SELECT * FROM utilisateur WHERE email= ?",
+      email,
+      (error, results, fields) => {
+        if (error) {
+          // <= si j'ai une erreur sur la recherche de la BDD
+          console.log(error);
+          response.json(error); // <= j'envoie lerreur en Json
+        } else if (results == 0) {
+          // <= si la reponse est negatif c'est que l'User n'existe pas
+          response.status(404).json({ error: "Utilisateur introuvable" });
+        } else {
+          // <= sinon je controle le PASSWORD
+          bcrypt // avec Bcrypt
+            .compare(request.body.password, results[0].password) // j'utilise la methode compare et j'isole le password entrer par l'User
+            .then((reponseVerif) => {
+              // cela me renvoie un TRUE OU FALS
+              if (!reponseVerif) {
+                // si la reponse de la verification du password est diferente de TRUE
+                response
+                  .status(401)
+                  .json({ message: "Le password est incorect" }); // j'annonce que c'est incorect.
+              }
+              // pour le reste je renvoie l'id et un token avec 24h de dellais
+              response.status(201).json({
+                userId: results[0].id,
+                token: jswtoken.sign(
+                  { userId: results[0].id },
+                  process.env.TOKEN_CODE,
+                  { expiresIn: "24h" }
+                ),
+              });
+              response.json();
             });
-
-            res.json();
-          });
-        // .catch((err) => res.status(500).json({ err })); //la reponse si tout vas mal;
+        }
       }
-    }
-  );
-  // .then(() => res.status(201).json({ message: "Profil Trouvé !" })) // la response si tout vas bien
-
-  //
-
+    );
+  // .then(() => res.status(201).json({ message: "Profil Trouvé !" })); // la response si tout vas bien
   //       .catch((error) => {
   //         res.status(500).json({ error });
   //       });
