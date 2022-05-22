@@ -4,6 +4,7 @@ const dotenv = require("dotenv").config();
 const express = require("express"); // recupere express
 const morgan = require("morgan");
 const cors = require("cors");
+//const auth = require("./middleware/auth");
 
 // !import la conexion a la Base de donnée.
 const dbConnection = require("./database/mysql.db");

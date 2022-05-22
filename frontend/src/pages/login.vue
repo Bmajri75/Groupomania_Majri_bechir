@@ -8,15 +8,7 @@ import navBarVue from "../components/layout/navBar.vue";
     }
   }
 
-const verifConnexion = (email, password) => {
-  console.log(`email : ${email} Password: ${password}`)
 
-  if (email !== "bmajri@free.fr" || password !== "1234") {
-    throw new Error(" invalide Identifiant ou Password")
-  }
-  const token = "my token test";
-  localStorage.setItem("token", token)
-}
 
 
 
@@ -27,7 +19,38 @@ export default {
     navBarVue
   },
   methods: {
-    verifConnexion
+    verifConnexion  () {
+
+const userLogin = {
+    email: this.email,
+    password: this.password
+ }
+
+   const options = {
+     method: 'POST', // j'indique que c'est une methode POST car Fetch par defaut envoie un GET
+      body: JSON.stringify(userLogin), // j'indique qu'il sagit de l'objet user sous forme de string pour etre un JSON
+      headers: {
+        // 'Accept': 'application/json', //type application utilisé
+        "Content-Type": "application/json"// je lui dit qu'il faut lire en JSON
+      },
+    };
+    fetch("http://localhost:8080/api/auth/login", options)
+      .then((res) => res.json())
+      .then((data) => {
+       console.log(data)
+       if (userLogin.email !== data.email || data.resultVerisPassword !== true) {
+          throw new Error(" invalide Identifiant ou Password")
+       }
+         const token = data.token;
+          localStorage.setItem("token", token)
+      })
+      .catch(err => {
+        console.log(`vous avez une Erreur !! ${err}`);
+        alert(`Désolé, une erreur est survenur, Merci de revenir plus tard`);
+      })
+
+  
+}
   }
 }
 
@@ -47,11 +70,11 @@ export default {
         <h1 class="h3 mb-3 fw-normal">Identifie Toi Collegue 👋</h1>
 
         <div class="form-floating">
-          <input type="email" class="form-control" id="email" placeholder="name@example.com" v-model="email">
+          <input type="email" class="form-control" id="email" placeholder="name@example.com" required v-model="email">
           <label for="email">Email </label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" v-model="password">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required v-model="password">
           <label for="floatingPassword"> Password </label>
         </div>
 
@@ -73,16 +96,29 @@ export default {
 </template>
 
 <style scoped>
-body {
-  height: 100%;
-}
+
 
 body {
+  height: 100%;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
 }
+/* Cible les éléments <input> qui ont */
+/* l'attribut required */
+input{
+  border: 2px solid;
+  margin: 10px;
+}
+input:required {
+  border-color: green;
+}
+input:invalid {
+  border-color: #ff0404;
+}
+
+
 
 .form-signin {
   width: 100%;

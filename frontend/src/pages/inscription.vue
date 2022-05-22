@@ -24,13 +24,12 @@ const methods = {
 
     const options = {
       method: 'POST', // j'indique que c'est une methode POST car Fetch par defaut envoie un GET
-      body: JSON.stringify(user), // j'indique qu'il sagit de l'objet order sous forme de string pour etre un JSON
+      body: JSON.stringify(user), // j'indique qu'il sagit de l'objet user sous forme de string pour etre un JSON
       headers: {
         // 'Accept': 'application/json', //type application utilisé
         "Content-Type": "application/json"// je lui dit qu'il faut lire en JSON
       },
     };
-    console.log(`email : ${user.email} Password: ${user.password} prenom : ${user.prenom} nom: ${user.nom}`)
     fetch("http://localhost:8080/api/auth/inscription", options)
       .then((res) => res.json())
       .then((data) => {
@@ -106,4 +105,15 @@ img {
 .formulair-container {
   border-color: #FD2D01;
 }
+
+/* Cible les éléments <input> qui ont */
+/* l'attribut required */
+
+input:required {
+  border-color: green;
+}
+input:invalid {
+  border-color: #ff0404;
+}
+
 </style>

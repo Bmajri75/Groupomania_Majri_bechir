@@ -26,7 +26,7 @@ router.beforeEach((to, from) => {
     return router.push("/login"); // me renvoie a la page Login
   }
 
-  // si le chemin autoriser et le token n'est pas valide
+  // si le chemin autoriser et isTokenValid renvoie fals
   if (isPrivatePAge(to) && !isTokenValid()) {
     console.error("token non Valide");
     return router.push("/login"); // me renvoie a la page Login
