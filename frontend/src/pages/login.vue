@@ -8,10 +8,6 @@ import navBarVue from "../components/layout/navBar.vue";
     }
   }
 
-
-
-
-
 export default {
   name: 'Login',
   data,
@@ -20,7 +16,6 @@ export default {
   },
   methods: {
     verifConnexion  () {
-
 const userLogin = {
     email: this.email,
     password: this.password
