@@ -8,19 +8,12 @@ import navBarVue from "../components/layout/navBar.vue";
     }
   }
 
-export default {
-  name: 'Login',
-  data,
-  components: {
-    navBarVue
-  },
-  methods: {
+  const methods = {
     verifConnexion  () {
-const userLogin = {
+      const userLogin = {
     email: this.email,
     password: this.password
  }
-
    const options = {
      method: 'POST', // j'indique que c'est une methode POST car Fetch par defaut envoie un GET
       body: JSON.stringify(userLogin), // j'indique qu'il sagit de l'objet user sous forme de string pour etre un JSON
@@ -33,25 +26,29 @@ const userLogin = {
       .then((res) => res.json())
       .then((data) => {
        console.log(data)
-       if (userLogin.email !== data.email || data.resultVerisPassword !== true) {
-          throw new Error(" invalide Identifiant ou Password")
+       if(data.token != undefined){ // pour regler le soucie du undefined sur le local storage
+         localStorage.setItem("token", data.token)
+          this.$router.push("/home")
+       }else {
+          this.$router.push("/signup")
+          alert("aucun Compte ?? Inscrit toi 🫶")
        }
-         const token = data.token;
-          localStorage.setItem("token", token)
       })
       .catch(err => {
         console.log(`vous avez une Erreur !! ${err}`);
         alert(`Désolé, une erreur est survenur, Merci de revenir plus tard`);
       })
-
-  
 }
   }
+
+export default {
+  name: 'Login',
+  components: {
+    navBarVue
+  },
+    data,
+    methods
 }
-
-
-
-
 
 
 </script>
@@ -72,17 +69,11 @@ const userLogin = {
           <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required v-model="password">
           <label for="floatingPassword"> Password </label>
         </div>
-
         <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
+          
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">
-          <router-link to="/profil" class="link-light text-decoration-none" id="connexionButton"
-            @click.prevent="() => verifConnexion(this.email, this.password)">
+        <button @click.prevent="verifConnexion" class="w-100 btn btn-lg btn-primary" type="submit">
             Connexion 🔑
-          </router-link>
         </button>
         <p class="mt-5 mb-3 text-muted">&copy; BashCoding 2022</p>
       </form>
@@ -104,7 +95,7 @@ body {
 /* l'attribut required */
 input{
   border: 2px solid;
-  margin: 10px;
+  margin-top: 10px;
 }
 input:required {
   border-color: green;

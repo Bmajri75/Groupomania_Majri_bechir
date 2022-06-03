@@ -1,18 +1,30 @@
-// composant des Routes
+///Mes imports
 import loginVue from "../pages/login.vue";
 import homePageVue from "../pages/home.vue";
 import inscriptionVue from "../pages/inscription.vue";
-import profilVue from "../pages/profil.vue";
-import friendsPage from "../pages/friendsPage.vue";
-
 import { createRouter, createWebHistory } from "vue-router";
 
+// les routes de mes pages
 const routes = [
-  { path: "/login", name: "loginVue", component: loginVue },
-  { path: "/home", name: "homepage", component: homePageVue },
-  { path: "/inscription", name: "inscriptionVue", component: inscriptionVue },
-  { path: "/profil", name: "profilVue", component: profilVue },
-  { path: "/amis", name: "friendsPage", component: friendsPage },
+  {
+    path: "/login",
+    name: "loginVue",
+    component: loginVue,
+  },
+  {
+    path: "/home",
+    name: "homepage",
+    component: homePageVue,
+  },
+  {
+    path: "/signup",
+    name: "inscriptionVue",
+    component: inscriptionVue,
+  },
+  {
+    path: "/",
+    redirect: "/login",
+  },
 ];
 
 const router = createRouter({
@@ -20,33 +32,32 @@ const router = createRouter({
   routes, // raccourci pour `routes: routes`
 });
 
-// autorise uniquement les routes /login et /inscription a l'affichage
-router.beforeEach((to, from) => {
-  if (isPrivatePAge(to) && !isToken()) {
-    return router.push("/login"); // me renvoie a la page Login
-  }
+// // autorise uniquement les routes /login et /inscription a l'affichage
+// router.beforeEach((to, from) => {
+//   if (!loginRequis(to)) {
+//     // si true renvoie la page login
+//     return router.push("/login");
+//   }
+// });
 
-  // si le chemin autoriser et isTokenValid renvoie fals
-  if (isPrivatePAge(to) && !isTokenValid()) {
-    console.error("token non Valide");
-    return router.push("/login"); // me renvoie a la page Login
-  }
-});
+// const loginRequis = (to) => {
+//   //  renvoie true ou fals selon les resultats
+//   if (!isPrivatePAge) return false;
+//   if (!isToken()) return true;
+//   return false;
+// };
 
-// verifie les chemin autorisée
-const isPrivatePAge = (to) => {
-  const autorizPath = ["/login", "/inscription"]; // array qui contien les seuls chemin autorisés sans Token ou inscription
-  return !autorizPath.includes(to.path);
-};
+// // verifie les chemin autorisée
+// const isPrivatePAge = (to) => {
+//   const autorizPath = ["/login", "/inscription"]; // array qui contien les seuls chemin autorisés sans Token ou inscription
+//   return !autorizPath.includes(to.path);
+// };
 
-// verifie si le token existe sans verifier sa contenance
-const isToken = () => {
-  return localStorage.getItem("token") != null;
-};
+// // verifie si le token existe sans verifier sa contenance
+// const isToken = () => {
+//   return localStorage.getItem("token") != null;
+// };
 
 // verifie la contenance du token si ça correspond
-const isTokenValid = () => {
-  const token = localStorage.getItem("token");
-  return token === "my token test";
-};
+
 export default router;

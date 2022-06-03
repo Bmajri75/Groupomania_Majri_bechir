@@ -1,11 +1,46 @@
 <script>
+
+// cette page est un bloque d'un post entier avec la partie comment
+
+
+// commentVue est un bloque commentaire
 import commentVue from "./comment.vue"
+
+
+const methods = {
+ addLike() {
+console.log("LIKE")
+ },
+
+ addDislike () {
+   console.log("DISLIKE")
+ },
+
+//  created(){
+//   fetch("http://localhost:8080/api/post")
+//   .then((res) => res.json())
+//   .then((res) => {
+    
+//     console.log("le POST ")
+//     console.log(res)
+//   })
+// }
+}
+
+
+
+
 export default {
   name: 'post',
   components: {
     commentVue
-  }
+  },
+  methods,
+//   data(){
+//   return post
+// }
 }
+
 
 </script>
 
@@ -17,13 +52,20 @@ export default {
         <div class="post-container border-bottom ">
           <img src="../../public/icon.svg" class="card-img-top border border-5 " alt="Image du post">
           <div class="post-container__text">
-
             <h5 class="card-title fs-6">Comptable.</h5>
             <p class="card-text">Mon POST c'est sa.</p>
+          </div>
+          <div class="likeBloc">
+            <button @click.prevent="addLike">👍</button>
+            <button @click.prevent="addDislike">👎</button>
           </div>
         </div>
         <div class=" p-2 text-dark bg-secondary bg-opacity-10 ">
           <commentVue />
+          <commentVue />
+          <commentVue />
+          <commentVue />
+
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
       </div>
@@ -62,5 +104,12 @@ img {
 
 .post-container__text {
   margin: 20px 50px;
+}
+
+.likeBloc{
+  display: flex;
+  justify-content: center;
+gap: 30px;
+margin-bottom: 50px;
 }
 </style>

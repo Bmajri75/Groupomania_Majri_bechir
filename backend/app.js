@@ -1,35 +1,32 @@
-// ici sa arrive de server.js et renvoie au dossier routes ou il y'a les routes >> ensuite sa vas au middleware pour les controles >> controller qui effectue la logique metier
-// !   les require
-const dotenv = require("dotenv").config();
-const express = require("express"); // recupere express
-const morgan = require("morgan");
+// ======= Express =======
+const express = require("express"); // je requier express pour la creation de l'app
+const morgan = require("morgan"); // morgan pour pour un retours des codes status
+const mongoose = require("./database/mongoose"); //le module mongoose pour la conexion à la base de donnée;
+const path = require("path"); // Path
 const cors = require("cors");
-//const auth = require("./middleware/auth");
+const app = express(); // je place dans app le module express
+require("dotenv").config();
 
-// !import la conexion a la Base de donnée.
-const dbConnection = require("./database/mysql.db");
+app.use(cors());
 
-//! les importation de mes routes
-const userRoutes = require("./routes/user");
+app.use(express.json()); // meme travail que bodyparser pour toutes mes methode
+app.use(morgan("dev")); // je configure le package morgan avec une config pré etablie
 
-// !j'appel expresse et je le lance dans app
-const app = express();
+// importation des routes via le dossier routes:
+const routesUser = require("./routes/user");
+const routesPost = require("./routes/post");
 
-app.use(
-  cors({
-    origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  })
-);
-// !  pour toutes les Routes
-app.use(morgan("dev"));
-app.use(express.json()); //Permet d'avoir acces au corp des request meme travail que bodyparser pour toutes mes methode
-
-//! ===== Les routes ====
+// la route des images
+/**
+ * __dirname == le dossier sur le quel on se trouve
+ */
+app.use("/images", express.static(path.join(__dirname, "/images")));
 
 // routes authantifications
-app.use("/api/auth", userRoutes);
+app.use("/api/auth", routesUser);
 
+//routes avec post
+app.use("/api/post", routesPost);
+
+// J'export app qui sera appeler sur server.js
 module.exports = app;

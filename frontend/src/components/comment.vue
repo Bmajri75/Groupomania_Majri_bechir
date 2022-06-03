@@ -1,5 +1,5 @@
 <script>
-
+// composant de commentaire
 export default {
   name: 'comment'
 }
@@ -7,29 +7,18 @@ export default {
 
 <template>
   <div class="container-sm d-flex flex-column">
-    <img src="../../public/icon.svg" class="image-card card-img-top rounded-circle" alt="avatar">
-    <div class="d-flex flex-column">
-      <p> @sophi à dit :</p>
-      <p>commentaire trop bien ton truc</p>
-      <hr>
-    </div>
-    <img src="../../public/icon.svg" class="image-card card-img-top rounded-circle" alt="avatar">
-    <div class="d-flex flex-column">
-      <p> @chris à dit : </p>
-      <p>j'aimerai bien essayer</p>
-      <hr>
-    </div>
     <img src="../../public/icon.svg" class="image-card  rounded-circle border-4" alt="avatar">
     <div class="d-flex flex-column">
       <p> @jungo à dit :</p>
       <p>waaa tu fais ça comment ?</p>
-      <hr>
+  
     </div>
     <div class="input-group">
       <span class="input-group-text">commentaire</span>
       <textarea class="form-control" aria-label="With textarea">... </textarea>
       <button type="button" class="btn btn-outline-primary">Envoyer</button>
     </div>
+    <hr>
   </div>
 </template>
 <style scoped>

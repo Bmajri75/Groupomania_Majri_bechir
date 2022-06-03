@@ -6,7 +6,7 @@ export default {
 
 <template>
   <div>
-    <router-view></router-view> <!-- Mon template des Login avec bootstrap -->
+<router-view></router-view>
   </div>
 </template>
 

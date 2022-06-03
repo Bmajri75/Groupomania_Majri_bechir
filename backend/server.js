@@ -1,9 +1,17 @@
+require("dotenv").config();
+const app = require("./app"); // je recupere la configuration de mon module app.js
 
-// !======      Mes require     ====
-// importation de de app pour faire fonctionnée le server
-const app = require('./app');
+// ===== lancement du server ======
+app.listen(process.env.PORT, () => {
+  console.log(`Server ouvert sur le PORT : ${process.env.PORT}`); // le serveur sera lu sur le port PORT de la variable d'environement
+});
 
-app.set('port', process.env.PORT);
+//! a faire
+// voir si un port est ouvert avec `sudo lsof -i :PORT `
+// fermer le port avec sudo kill Numero NID
 
-// le serveur ecoute le port 
-app.listen(process.env.PORT)
+// recupere les backend du p6
+
+// cree les conexion du front p7
+
+// voir la video sur le CORS de egeniclimatique n 141
