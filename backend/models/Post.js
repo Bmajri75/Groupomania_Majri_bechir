@@ -12,4 +12,4 @@ const PostShema = mongoose.Schema({
   usersDisliked: { type: [String], required: false },
 });
 
-module.exports = mongoose.model("Post", PostShema);
+module.exports = mongoose.model("post", PostShema);

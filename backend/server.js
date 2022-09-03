@@ -10,8 +10,6 @@ app.listen(process.env.PORT, () => {
 // voir si un port est ouvert avec `sudo lsof -i :PORT `
 // fermer le port avec sudo kill Numero NID
 
-// recupere les backend du p6
-
 // cree les conexion du front p7
 
 // voir la video sur le CORS de egeniclimatique n 141

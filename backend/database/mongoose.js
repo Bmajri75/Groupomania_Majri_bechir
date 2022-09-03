@@ -16,7 +16,6 @@ mongoose
   })
   // je recupere la promise et je console.log que la conexion est reussi
   .then(() => console.log("Connexion à MongoDB réussie !"))
-  // console.log(si erreur je console.log que la connexion est un echecs)
   .catch(() => console.error("Connexion à MongoDB échouée !"));
 
 module.exports = mongoose; // j'export le module mongoose pour le recuperer sur app.js

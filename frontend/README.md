@@ -1,29 +1,27 @@
-# frontend
+# Projet Groupomania Openclassrooms P7
 
-This template should help get you started developing with Vue 3 in Vite.
+ceci est le projet Groupomania.
 
-## Recommended IDE Setup
+un reseaux social d'entreprise.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
 
-## Customize configuration
+## Frontend 
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Vue3
+- Bootstrap
+- SASS
 
-## Project Setup
+pour lancer le Frontend
+à partir du dossier Frontend
+taper dans la console 
+`npm run dev`
 
-```sh
-npm install
-```
+## Backend
 
-### Compile and Hot-Reload for Development
+- NodeJS
+- MongoDb
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+pour lancer le Backend
+à partir du dossier Backend
+taper dans la console 
+`npm start`

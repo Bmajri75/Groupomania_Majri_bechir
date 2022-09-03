@@ -2,48 +2,65 @@
 import postVue from "../components/post.vue";
 import navBarConnectVue from "../components/layout/navBarConnect.vue";
 
-
 // data renvoie les data prise
 const data = () => {
+
   return {
-    imageUrl: "",
+    userId: "",
     commentaire: "",
+    image: null
   }
-} 
-// methods qui renvoie les methode cree 
+}
+console.log(data)
+// methods qui renvoie les Methode cree pour VueJS 
 const methods = {
-beforeCreate ()  {
-      const token = localStorage.getItem("token")
-      if(token == null || token == "") {
-        this.$router.push("/signup")
-      }
-      if(token == true){
-        this.$router.push("/home")
-      }
-    },
- postValid  () {
- const post = {
-   imageUrl: this.imageUrl,
-   commentaire: this.commentaire,
- }
-     const options = {
-        method: 'POST', // j'indique que c'est une methode POST car Fetch par defaut envoie un GET
-        body: JSON.stringify(post), // j'indique qu'il sagit de l'objet post sous forme de string pour etre un JSON
-        headers: {
-          "Content-Type": "application/json"// je lui dit qu'il faut lire en JSON
-        },
-      }
-      fetch("http://localhost:8080/api/post", options)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data)
-        })
-        .catch(err => {
-          console.log(`vous avez une Erreur !! ${err}`);
-          alert(`Désolé, une erreur est survenur, Merci de revenir plus tard`);
-        })
-   }
+
+  // methode selectionne l'image envoyé
+  fileSelected(file) {
+    this.image = file.target.files[0]
+  },
+
+
+  postValid() {
+
+    const fd = new FormData()
+    fd.append('userId', localStorage.getItem("userId"))
+    fd.append('imageUrl', this.image)
+    fd.append('commentaire', this.commentaire)
+
+
+
+    console.log(fd)
+
+
+    const options = {
+      method: 'POST', // j'indique que c'est une methode POST car Fetch par defaut envoie un GET
+      body: JSON.stringify(fd),  // j'indique qu'il sagit de l'objet post sous forme de string pour etre un JSON
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data; Boundary=------some-random-characters'
+      },
     }
+
+
+    const promesse = fetch("http://localhost:8080/api/post", options)
+    promesse
+      .then(async response => {
+        try {
+          const data = await response.json()
+          console.log(data)
+        } catch (error) {
+          console.log(error)
+        }
+      })
+  },
+
+
+
+}
+
+
 
 export default {
   name: 'homeVue',
@@ -51,8 +68,18 @@ export default {
     postVue,
     navBarConnectVue
   },
+  created() {
+    const token = localStorage.getItem("token")
+    if (token == null) {
+      this.$router.push("/signup")
+    }
+    if (token == true) {
+      this.$router.push("/home")
+    }
+  },
   methods,
   data
+
 }
 
 </script>
@@ -61,15 +88,17 @@ export default {
   <navBarConnectVue />
   <div class="container-xl  p-3">
     <div>
-      <textarea class="form-control" placeholder="Ecrit ton Message ici ..." id="floatingTextarea" v-model="commentaire"></textarea>
+      <textarea class="form-control" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"
+        v-model="commentaire"></textarea>
     </div>
     <br>
     <form>
       <div class="mb-3 d-inline">
         <label for="formFileSm" class="form-label">Ajouter un fichier : </label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
+        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="fileSelected">
         <div class="button__form d-flex justify-content-between">
-          <button @click="postValid"  type="button" class="btn btn-outline-primary" id="envoyer">Envoyer 📤</button>
+          <button @click="postValid" type="button" class="btn btn-outline-primary" id="envoyer">Envoyer 📤</button>
+          <img v-if="image" src="" alt="">
         </div>
       </div>
     </form>

@@ -1,10 +1,10 @@
 <script>
-    // cette methode vide le Token et renvoie a la page Login l'orsqu'elle est invoqué
+// cette methode vide le Token et renvoie a la page Login l'orsqu'elle est invoqué
 const methods = {
-  disconnect () {
-      localStorage.removeItem("token");
-      this.$router.push("/login")
-    }
+  disconnect() {
+    localStorage.removeItem('token');
+    this.$router.push("/login")
+  }
 }
 export default {
   name: "navbarConnect",
@@ -22,12 +22,9 @@ export default {
             <use xlink:href="../../public/Groupomania_Logos+(3)/icon-left-font-monochrome-black.svg" />
           </svg>
         </a>
-  <!-- au click on appel la methode disconnect -->
+        <!-- au click on appel la methode disconnect -->
         <div class="text-end">
-          <button 
-          @click="disconnect" 
-          type="button" 
-          class="btn btn  btn-danger " >
+          <button @click="disconnect" type="button" class="btn btn  btn-danger ">
             Disconect
           </button>
         </div>

@@ -3,12 +3,17 @@ const postModel = require("../models/Post");
 const fs = require("fs"); // ===> files system
 
 // Cree Post
-exports.createPost = (req, res, next) => {
+exports.createPost = (req, res) => {
   const postObject = JSON.parse(req.body.post);
-  console.log("REQ.BODY.POSTE");
-  console.log(postObject);
+  delete postObject._id;
+  delete postObject._userId; // pour la securité on utilise le token
+
+  console.log("req.file...=======>.");
+  console.log(req.file);
+
   const post = new postModel({
     ...postObject,
+    userId: req.auth.userId,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`, // protocole + nom d'auth / nom de fichier
@@ -23,68 +28,68 @@ exports.createPost = (req, res, next) => {
     );
 };
 
-// exports.modifyPost = (req, res, next) => {
-//   const postObject = req.file
-//     ? {
-//         ...JSON.parse(req.body.post),
-//         imageUrl: `${req.protocol}://${req.get("host")}/images/${
-//           req.file.filename
-//         }`, // protocole + nom d'auth / nom de fichier
-//       }
-//     : { ...req.body };
-//   postModel
-//     .updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
-//     .then(() => res.status(200).json({ message: "Post Modifié" }))
-//     .catch((err) =>
-//       res
-//         .status(400)
-//         .json({ message: `erreur sur la Modification de post ===> ${err}` })
-//     );
-// };
+exports.modifyPost = (req, res, next) => {
+  const postObject = req.file
+    ? {
+        ...JSON.parse(req.body.post),
+        imageUrl: `${req.protocol}://${req.get("host")}/images/${
+          req.file.filename
+        }`, // protocole + nom d'auth / nom de fichier
+      }
+    : { ...req.body };
+  postModel
+    .updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
+    .then(() => res.status(200).json({ message: "Post Modifié" }))
+    .catch((err) =>
+      res
+        .status(400)
+        .json({ message: `erreur sur la Modification de post ===> ${err}` })
+    );
+};
 
-// //aficher une post
-// exports.singlePost = (req, res, next) => {
-//   postModel
-//     .findOne({ _id: req.params.id })
-//     .then((post) => res.status(200).json(post))
-//     .catch((err) =>
-//       res
-//         .status(400)
-//         .json({ message: `erreur sur la selection d'un post ===> ${err}` })
-//     );
-// };
+//aficher une post
+exports.singlePost = (req, res, next) => {
+  postModel
+    .findOne({ _id: req.params.id })
+    .then((post) => res.status(200).json(post))
+    .catch((err) =>
+      res
+        .status(400)
+        .json({ message: `erreur sur la selection d'un post ===> ${err}` })
+    );
+};
 
-// aficher toutes les post
-// exports.allpost = (req, res, next) => {
-//   postModel
-//     .find()
-//     .then((post) => res.status(200).json(post))
-//     .catch((err) =>
-//       res
-//         .status(400)
-//         .json({ message: `erreur sur l'affichage d'une post ===> ${err}` })
-//     );
-// };
+//aficher toutes les post
+exports.allpost = (req, res, next) => {
+  postModel
+    .find()
+    .then((post) => res.status(200).json(post))
+    .catch((err) =>
+      res
+        .status(400)
+        .json({ message: `erreur sur l'affichage d'une post ===> ${err}` })
+    );
+};
 
-// on supprime l'image et ensuite l'objet
-// exports.deletPost = (req, res, next) => {
-//   postModel
-//     .findOne({ _id: req.params.id })
-//     .then((post) => {
-//       const filename = post.imageUrl.split("/images/")[1];
-//       fs.unlink(`images/${filename}`, () => {
-//         postModel
-//           .deleteOne({ _id: req.params.id })
-//           .then(() => res.status(200).json({ message: "Post supprimé !" }))
-//           .catch((err) =>
-//             res.status(400).json({
-//               message: `erreur sur la suppression d'une post ===> ${err}`,
-//             })
-//           );
-//       });
-//     })
-//     .catch((err) => res.status(500).json({ message: `erreur ${err}` }));
-// };
+//on supprime l'image et ensuite l'objet
+exports.deletPost = (req, res, next) => {
+  postModel
+    .findOne({ _id: req.params.id })
+    .then((post) => {
+      const filename = post.imageUrl.split("/images/")[1];
+      fs.unlink(`images/${filename}`, () => {
+        postModel
+          .deleteOne({ _id: req.params.id })
+          .then(() => res.status(200).json({ message: "Post supprimé !" }))
+          .catch((err) =>
+            res.status(400).json({
+              message: `erreur sur la suppression d'une post ===> ${err}`,
+            })
+          );
+      });
+    })
+    .catch((err) => res.status(500).json({ message: `erreur ${err}` }));
+};
 
 exports.likePost = (req, res, next) => {
   switch (

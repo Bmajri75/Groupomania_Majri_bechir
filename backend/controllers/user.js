@@ -42,8 +42,6 @@ exports.login = (req, res, next) => {
         .compare(req.body.password, utilisateur.password)
 
         .then((reponseVerif) => {
-          console.log(reponseVerif);
-
           if (!reponseVerif) {
             return res.status(401).json({ error: "Le password est incorect" });
           }
@@ -53,7 +51,7 @@ exports.login = (req, res, next) => {
             userId: utilisateur._id,
             token: jswtoken.sign(
               { userId: utilisateur._id }, // userID prend le ID de l'user
-              process.env.TOKEN_CODE,
+              `${process.env.TOKEN_CODE}`,
               { expiresIn: "24h" }
             ),
           });
