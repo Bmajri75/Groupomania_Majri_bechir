@@ -3,20 +3,17 @@
 // commentVue est un bloque commentaire
 
 const methods = {
-
   addLike() {
     console.log("LIKE")
-
   },
 
-  addDislike() {
-    console.log("DISLIKE")
+  modifyPost() {
+    console.log("Modifier")
   },
 
   deletPost() {
     console.log("supprime le Poste")
   },
-
 
   async getPost() {
     try {
@@ -51,8 +48,8 @@ export default {
           </div>
           <div class="likeBloc">
             <button @click="deletPost" class="btn btn-danger">Supprimer</button>
+            <button @click.prevent="modifyPost">👎</button>
             <button @click.prevent="addLike">👍</button>
-            <button @click.prevent="addDislike">👎</button>
           </div>
         </div>
         <div class=" p-2 text-dark bg-secondary bg-opacity-10 ">

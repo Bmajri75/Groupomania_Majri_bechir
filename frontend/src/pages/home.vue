@@ -8,41 +8,44 @@ const data = () => {
   return {
     userId: "",
     commentaire: "",
-    image: null
+    image: ""
   }
 }
+
 console.log(data)
+
 // methods qui renvoie les Methode cree pour VueJS 
 const methods = {
 
-  // methode selectionne l'image envoyé
-  fileSelected(file) {
-    this.image = file.target.files[0]
+  // methode selectionne qui selectionne l'image envoyé a chaque changement.
+  fileSelected(event) {
+    this.image = event.target.files[0]
+
+    console.log(this.image)
   },
+
+
 
 
   postValid() {
 
-    const fd = new FormData()
+    let fd = new FormData(postForm)
     fd.append('userId', localStorage.getItem("userId"))
     fd.append('imageUrl', this.image)
     fd.append('commentaire', this.commentaire)
 
 
 
-    console.log(fd)
-
 
     const options = {
       method: 'POST', // j'indique que c'est une methode POST car Fetch par defaut envoie un GET
-      body: JSON.stringify(fd),  // j'indique qu'il sagit de l'objet post sous forme de string pour etre un JSON
+      body: JSON.stringify(fd),  // j'indique qu'il sagit du Forme Data
       headers: {
         'Authorization': `Bearer ${localStorage.getItem("token")}`,
         'Accept': 'application/json',
         'Content-Type': 'multipart/form-data; Boundary=------some-random-characters'
       },
     }
-
 
     const promesse = fetch("http://localhost:8080/api/post", options)
     promesse
@@ -87,15 +90,15 @@ export default {
 <template>
   <navBarConnectVue />
   <div class="container-xl  p-3">
-    <div>
-      <textarea class="form-control" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"
-        v-model="commentaire"></textarea>
-    </div>
-    <br>
-    <form>
+    <form id="postForm" method="post" enctype="multipart/form-data">
+      <div>
+        <textarea class="form-control" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"
+          v-model="commentaire"></textarea>
+      </div>
+      <br>
       <div class="mb-3 d-inline">
         <label for="formFileSm" class="form-label">Ajouter un fichier : </label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="fileSelected">
+        <input class="form-control form-control-sm" id="formFileSm" type="file" name="imageUrl" @change="fileSelected">
         <div class="button__form d-flex justify-content-between">
           <button @click="postValid" type="button" class="btn btn-outline-primary" id="envoyer">Envoyer 📤</button>
           <img v-if="image" src="" alt="">

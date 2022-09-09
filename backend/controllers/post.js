@@ -5,14 +5,11 @@ const fs = require("fs"); // ===> files system
 // Cree Post
 exports.createPost = (req, res) => {
   const postObject = JSON.parse(req.body.post);
-  delete postObject._id;
-  delete postObject._userId; // pour la securité on utilise le token
-
-  console.log("req.file...=======>.");
-  console.log(req.file);
-
+  delete postObject._userId; // pour la securité on utilise le token, on suprime le userId
+  console.log("Je SUIS DANS LE CREATE");
+  // je cree un nouveau poste a partir de postModel
   const post = new postModel({
-    ...postObject,
+    ...postObject, // et je lui ajoute les objet du poste
     userId: req.auth.userId,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
@@ -47,17 +44,17 @@ exports.modifyPost = (req, res, next) => {
     );
 };
 
-//aficher une post
-exports.singlePost = (req, res, next) => {
-  postModel
-    .findOne({ _id: req.params.id })
-    .then((post) => res.status(200).json(post))
-    .catch((err) =>
-      res
-        .status(400)
-        .json({ message: `erreur sur la selection d'un post ===> ${err}` })
-    );
-};
+// //aficher une post
+// exports.singlePost = (req, res, next) => {
+//   postModel
+//     .findOne({ _id: req.params.id })
+//     .then((post) => res.status(200).json(post))
+//     .catch((err) =>
+//       res
+//         .status(400)
+//         .json({ message: `erreur sur la selection d'un post ===> ${err}` })
+//     );
+// };
 
 //aficher toutes les post
 exports.allpost = (req, res, next) => {

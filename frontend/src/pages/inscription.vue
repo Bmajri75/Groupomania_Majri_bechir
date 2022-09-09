@@ -40,7 +40,7 @@ const methods = {
       const promesse = fetch("http://localhost:8080/api/auth/signup", options)
       promesse.then(async response => {
         try {
-          const body = await response.json();
+          await response.json();
           console.log('Inscription valide')
         } catch (error) {
           console.log(`vous avez une Erreur !! ${err}`);
