@@ -1,13 +1,12 @@
 <script>
 // importation de mes Vues
-import navBarVue from "../components/layout/navBar.vue" // la barre de navigation
+import NavBarre from "../components/Navbarre/NavBarre.vue" // la barre de navigation
 import { useField, useForm } from 'vee-validate'; // 2 methodes useField et useForm de vee-validate pour m'aider à valider mes ormulaire
 import { validationSchema } from "./login.vue"; // la methode de validation des formulaire email et password avec les messages d'erreurs en cas ou
 
 
-// verification des champs 
+// verification des champs et validation du schema
 useForm({ validationSchema });
-
 const { value: email, errorMessage: emailError } = useField('email', validationSchema.email);
 const { value: password, errorMessage: passwordError } = useField('password', validationSchema.password);
 
@@ -23,7 +22,6 @@ const data = () => {
 const methods = {
   // valide l'inscription et fetch au backend
   inscriptionValid() {
-
     if (validationSchema) {
       // je recupere les donnés de mon formulaire et je cree un Objet user qui sera envoyer au backend via fetch
       const user = {
@@ -57,7 +55,7 @@ const methods = {
 export default {
   name: 'Inscription',
   components: {
-    navBarVue
+    NavBarre
   },
   data,
   methods
@@ -66,7 +64,7 @@ export default {
 </script>
 
 <template>
-  <navBarVue />
+  <NavBarre />
   <div class="container-sm">
     <div class="rounded-3 border border-5 d-flex flex-column justify-content-center" style="border-color:#FD2D01">
       <form class=" row g-4 p-4">

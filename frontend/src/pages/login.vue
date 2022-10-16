@@ -36,7 +36,7 @@ Il est également possible, comme nous l'étudierons, de créer ses propres dire
 
 <script>
 
-import navBarVue from "../components/layout/navBar.vue";
+import NavBarre from "../components/Navbarre/NavBarre.vue";
 import { useField, useForm } from 'vee-validate';
 
 
@@ -120,7 +120,7 @@ const methods = {
 export default {
   name: 'Login',
   components: {
-    navBarVue,
+    NavBarre,
     useField,
     useForm
   },

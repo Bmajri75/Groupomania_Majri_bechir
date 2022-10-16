@@ -9,8 +9,8 @@ const controllerPost = require("../controllers/post");
 const multer = require("../middleware/multer");
 
 // ===== Mes Routes User=====
-router.get("/", auth, controllerPost.allpost); // recupere tout les poste
 router.post("/", auth, multer, controllerPost.createPost); // envoie et cree un poste
+router.get("/", auth, controllerPost.allpost); // recupere tout les poste
 // router.get("/:id", auth, controllerPost.singlePost); // recupere 1 poste
 router.put("/:id", auth, multer, controllerPost.modifyPost); // modifier un poste
 router.delete("/:id", auth, multer, controllerPost.deletPost); // suprimer un poste

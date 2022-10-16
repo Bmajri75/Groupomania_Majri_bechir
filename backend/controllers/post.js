@@ -1,10 +1,11 @@
 // c'est Ici que vas etre executer toutes les commandes pour ma routes pour Post
-const postModel = require("../models/Post");
 const fs = require("fs"); // ===> files system
+const postModel = require("../models/Post");
 
 // Cree Post
-exports.createPost = (req, res) => {
-  const postObject = JSON.parse(req.body.post);
+exports.createPost = (req, res, next) => {
+  console.log()
+  const postObject = JSON.parse(req.body);
   delete postObject._userId; // pour la securité on utilise le token, on suprime le userId
   console.log("Je SUIS DANS LE CREATE");
   // je cree un nouveau poste a partir de postModel

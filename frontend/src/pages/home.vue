@@ -1,6 +1,7 @@
 <script>
-import postVue from "../components/post.vue";
-import navBarConnectVue from "../components/layout/navBarConnect.vue";
+import PostAction from "../components/PostComponents/PostAction.vue";
+import NavBarreConnect from "../components/NavBarre/NavBarreConnect.vue";
+import PostForm from "../components/PostComponents/PostForm.vue";
 
 // data renvoie les data prise
 const data = () => {
@@ -14,115 +15,41 @@ const data = () => {
 
 console.log(data)
 
-// methods qui renvoie les Methode cree pour VueJS 
 const methods = {
-
-  // methode selectionne qui selectionne l'image envoyé a chaque changement.
-  fileSelected(event) {
-    this.image = event.target.files[0]
-
-    console.log(this.image)
-  },
-
-
-
-
-  postValid() {
-
-    let fd = new FormData(postForm)
-    fd.append('userId', localStorage.getItem("userId"))
-    fd.append('imageUrl', this.image)
-    fd.append('commentaire', this.commentaire)
-
-
-
-
-    const options = {
-      method: 'POST', // j'indique que c'est une methode POST car Fetch par defaut envoie un GET
-      body: JSON.stringify(fd),  // j'indique qu'il sagit du Forme Data
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem("token")}`,
-        'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data; Boundary=------some-random-characters'
-      },
-    }
-
-    const promesse = fetch("http://localhost:8080/api/post", options)
-    promesse
-      .then(async response => {
-        try {
-          const data = await response.json()
-          console.log(data)
-        } catch (error) {
-          console.log(error)
-        }
-      })
-  },
-
-
-
+  created() {
+   const token = localStorage.getItem("token")
+   if (token == null) {
+     this.$router.push("/signup")
+   }
+   if (token == true) {
+     this.$router.push("/home")
+   }
+ }
 }
-
-
 
 export default {
   name: 'homeVue',
   components: {
-    postVue,
-    navBarConnectVue
-  },
-  created() {
-    const token = localStorage.getItem("token")
-    if (token == null) {
-      this.$router.push("/signup")
-    }
-    if (token == true) {
-      this.$router.push("/home")
-    }
-  },
-  methods,
+    PostAction,
+    NavBarreConnect,
+    PostForm,
+},
+methods,
   data
-
 }
+
 
 </script>
 
 <template>
-  <navBarConnectVue />
+  <NavBarreConnect />
   <div class="container-xl  p-3">
-    <form id="postForm" method="post" enctype="multipart/form-data">
-      <div>
-        <textarea class="form-control" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"
-          v-model="commentaire"></textarea>
-      </div>
-      <br>
-      <div class="mb-3 d-inline">
-        <label for="formFileSm" class="form-label">Ajouter un fichier : </label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file" name="imageUrl" @change="fileSelected">
-        <div class="button__form d-flex justify-content-between">
-          <button @click="postValid" type="button" class="btn btn-outline-primary" id="envoyer">Envoyer 📤</button>
-          <img v-if="image" src="" alt="">
-        </div>
-      </div>
-    </form>
-    <br>
-    <hr class="separet__hr">
-    <postVue />
+    <PostForm />
+    <PostAction />
   </div>
 
 
 </template>
 
 <style scoped>
-.button__form {
-  margin-top: 30px;
-}
-
-#floatingTextarea {
-  height: 150px;
-}
-
-.separet__hr {
-  color: #FD2D01;
-}
 </style>

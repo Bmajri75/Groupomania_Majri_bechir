@@ -1,14 +1,11 @@
 <script>
 // cette page est un bloque d'un post entier avec la partie comment
 // commentVue est un bloque commentaire
+import PostComment from './PostComment.vue'
 
 const methods = {
   addLike() {
     console.log("LIKE")
-  },
-
-  modifyPost() {
-    console.log("Modifier")
   },
 
   deletPost() {
@@ -28,32 +25,35 @@ const methods = {
 
 }
 
-
 export default {
-  name: 'post',
-  methods,
+    name: "PostAction",
+    methods,
+    components: { PostComment }
 }
 </script>
 
 <template>
+  <hr class="separet__hr">
   <div class="container-card">
     <div class="card mb-3">
       <div class="card-header">@pseudo</div>
       <div class="row g-0">
         <div class="post-container border-bottom ">
-          <img src="../../public/icon.svg" class="card-img-top border border-5 " alt="Image du post">
-          <div class="post-container__text">
-            <h5 class="card-title fs-6">Comptable.</h5>
-            <p class="card-text">Mon POST c'est sa.</p>
-          </div>
+          <img src="../../../public/icon.svg" class="card-img-top border border-5 " alt="Image du post">
           <div class="likeBloc">
-            <button @click="deletPost" class="btn btn-danger">Supprimer</button>
-            <button @click.prevent="modifyPost">👎</button>
-            <button @click.prevent="addLike">👍</button>
+            <button @click="deletPost" class="btn btn-danger">Supprimer 🗑️</button>
+            <button @click.prevent="addLike" class="btn btn-primary">👍</button>
           </div>
-        </div>
-        <div class=" p-2 text-dark bg-secondary bg-opacity-10 ">
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <div class="d-flex flex-column align-items-center">
+            <PostComment class="m-3" />
+            <PostComment class="m-3" />
+            <PostComment class="m-3" />
+          </div>
+           <div class="form-floating d-flex m-4">
+              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+              <label for="floatingTextarea">Ajoute ton commentaire</label>
+              <button class="btn btn-outline-dark">Envoyer</button>
+          </div>
         </div>
       </div>
     </div>
@@ -61,6 +61,9 @@ export default {
 </template>
 
 <style scoped>
+.separet__hr {
+  color: #FD2D01;
+}
 .container-card {
   margin-top: 50px;
 }

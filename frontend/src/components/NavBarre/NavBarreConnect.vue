@@ -1,31 +1,25 @@
 <script>
-
+// cette methode vide le Token et renvoie a la page Login l'orsqu'elle est invoqué
+const methods = {
+  disconnect() {
+    localStorage.removeItem('token');
+    this.$router.push("/login")
+  }
+}
 export default {
-  name: "navbar"
+  name: "NavbarConnect",
+  methods
 }
 </script>
 
 <template>
   <header class="p-3 headerColor text-white">
-
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-3" width="50" height="50" role="img" aria-label="groupomania">
-            <use xlink:href="../../public/Groupomania_Logos+(3)/icon-left-font-monochrome-black.svg" />
-          </svg>
-        </a>
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li>
-            <router-link to="/home" class="nav-link  px-3 btn text-white">Acceuil</router-link>
-          </li>
-        </ul>
+        <!-- au click on appel la methode disconnect -->
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2 ">
-            <router-link to="/login" class="link-light text-decoration-none"> Connexion</router-link>
-          </button>
-          <button type="button" class="btn btn btn-outline-light btn-primary ">
-            <router-link to="/signup" class="link-light text-decoration-none">Inscription </router-link>
+          <button @click="disconnect" type="button" class="btn btn  btn-danger ">
+            Disconect
           </button>
         </div>
       </div>
