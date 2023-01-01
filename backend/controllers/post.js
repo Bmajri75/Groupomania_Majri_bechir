@@ -2,27 +2,31 @@
 const fs = require("fs"); // ===> files system
 const postModel = require("../models/Post");
 
-// Cree Post
 exports.createPost = (req, res, next) => {
-  console.log()
-  const postObject = JSON.parse(req.body);
-  delete postObject._userId; // pour la securité on utilise le token, on suprime le userId
-  console.log("Je SUIS DANS LE CREATE");
-  // je cree un nouveau poste a partir de postModel
+  console.log("LE REQ.BODY ====>  CREE UN POSTE");
+  const postObject = req.body;
+
+  console.log("le POSTE");
+  console.log(postObject);
+
+  // je crée un nouveau poste à partir de postModel
   const post = new postModel({
-    ...postObject, // et je lui ajoute les objet du poste
-    userId: req.auth.userId,
+    ...postObject,
+    userId: req.body.userId,
+    commentaire: req.body.commentaire,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`, // protocole + nom d'auth / nom de fichier
   });
+
+  // j'enregistre le nouveau poste
   post
     .save()
-    .then(() => res.status(201).json({ message: `post bien cree` }))
+    .then(() => res.status(201).json({ message: "post bien créé" }))
     .catch((err) =>
       res
         .status(400)
-        .json({ message: `erreur sur la creation de post ===> ${err}` })
+        .json({ message: `erreur sur la création de post ===> ${err}` })
     );
 };
 

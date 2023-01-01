@@ -5,7 +5,7 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 
 // requier de mes controler pour les placer en arguments de mes routes
-const controllerPost = require("../controllers/post");
+const controllerPost = require("../controllers/post.js");
 const multer = require("../middleware/multer");
 
 // ===== Mes Routes User=====

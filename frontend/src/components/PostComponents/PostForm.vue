@@ -1,71 +1,67 @@
-<script>
-// Function selectionne qui selectionne l'image envoyé a chaque changement.
-function fileSelected(event) {
-  return this.image = event.target.files[0]
-}
-
-// function pour valider le Poste
-// ici j'ai preferer ajouer les information manuellement 
-function postValid() {
-  let fd = new FormData()
-  fd.append('userId', localStorage.getItem("userId"))
-  fd.append('imageUrl', this.image)
-  fd.append('commentaire', this.commentaire)
-
-
-  for (let data of fd) {
-
-  }
-  console.log(data)
-
-
-  const token = localStorage.getItem("token")
-  const options = {
-    method: 'POST', // j'indique que c'est une methode POST car Fetch par defaut envoie un GET
-    body: fd,  // j'indique qu'il sagit du Forme Data
-    headers: {
-      // envoie du TOKEN POUR DECODER LE TOKEN du cote BACK
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/json'
-    },
-  }
-  fetch('http://localhost:8080/api/post', options)
-    .then(response => console.log(response))
-    .then(data => console.log(data))
-    .catch(err => {
-      console.log(err)
-    })
-
-}
-
-const methods = {
-  fileSelected,
-  postValid
-
-}
-
-export default {
-  name: 'PostForme',
-  methods
-}
-</script>
-
 <template>
   <form id="postForm" method="post" enctype="multipart/form-data">
     <div>
       <textarea class="form-control" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"
-        v-model="commentaire"></textarea>
+        v-model="commentaire" />
     </div>
-    <br>
+    <br />
     <div class="mb-3 d-inline">
       <label for="formFileSm" class="form-label">Ajouter un fichier : </label>
-      <input class="form-control form-control-sm" id="formFileSm" type="file" name="imageUrl" @change="fileSelected">
+      <input class="form-control form-control-sm" id="formFileSm" type="file" name="imageUrl" multiple
+        @change="fileSelected" />
       <div class="button__form d-flex justify-content-between">
         <button @click="postValid" type="button" class="btn btn-outline-primary" id="envoyer">Envoyer 📤</button>
       </div>
     </div>
   </form>
 </template>
+
+
+<script>
+export default {
+  name: 'PostForme',
+  data() {
+    return {
+      image: null,
+      commentaire: '',
+    };
+  },
+  methods: {
+    fileSelected(event) {
+      this.image = event.target.files[0];
+    },
+    postValid() {
+      const fd = new FormData();
+      fd.append('imageUrl', this.image);
+      fd.append('commentaire', this.commentaire);
+
+      console.log(fd);
+
+      const token = localStorage.getItem('token');
+      const options = {
+        method: 'POST',
+        body: fd,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      fetch('http://localhost:8080/api/post', options)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Erreur lors de l\'envoi du post');
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+  },
+};
+</script>
 
 <style scoped>
 .button__form {
