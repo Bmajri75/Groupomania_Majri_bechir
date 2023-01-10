@@ -5,9 +5,10 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 
 // requier de mes controler pour les placer en arguments de mes routes
-const controllerPost = require("../controllers/post.js");
+const controllerPost = require("../controllers/post");
 const multer = require("../middleware/multer");
 
+console.log("MODULE ROUTE POST.JS");
 // ===== Mes Routes User=====
 router.post("/", auth, multer, controllerPost.createPost); // envoie et cree un poste
 router.get("/", auth, controllerPost.allpost); // recupere tout les poste

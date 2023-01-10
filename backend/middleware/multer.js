@@ -1,4 +1,5 @@
 const multer = require("multer");
+console.log("MODULE MULTER.js");
 // dictionnaire
 const MIME_TYPES = {
   "image/jpg": "jpg",
@@ -7,10 +8,11 @@ const MIME_TYPES = {
 };
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, "./public/images");
+    callback(null, "../images/");
   },
   filename: (req, file, callback) => {
     const name = file.originalname.split(" ").join("_");
+    console.log(file);
     // gestion des nom de fichier
     const extension = MIME_TYPES[file.mimetype];
     callback(null, `${name}-${Date.now()}.${extension}`); // nom + timestamp + extension

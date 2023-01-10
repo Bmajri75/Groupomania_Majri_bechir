@@ -11,8 +11,9 @@ require("dotenv").config();
 const routesUser = require("./routes/user");
 const routesPost = require("./routes/post");
 
-// app.use(cors()); // autorisation des REQUETES Configuration general
+app.use(cors()); // autorisation des REQUETES Configuration general
 app.use((req, res, next) => {
+  console.log("MODULE APP.JS");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",

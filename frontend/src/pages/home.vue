@@ -17,14 +17,14 @@ console.log(data)
 
 const methods = {
   created() {
-   const token = localStorage.getItem("token")
-   if (token == null) {
-     this.$router.push("/signup")
-   }
-   if (token == true) {
-     this.$router.push("/home")
-   }
- }
+    const token = localStorage.getItem("token")
+    if (token == null) {
+      this.$router.push("/signup")
+    }
+    if (token == true) {
+      this.$router.push("/home")
+    }
+  }
 }
 
 export default {
@@ -33,8 +33,8 @@ export default {
     PostAction,
     NavBarreConnect,
     PostForm,
-},
-methods,
+  },
+  methods,
   data
 }
 
@@ -42,14 +42,17 @@ methods,
 </script>
 
 <template>
-  <NavBarreConnect />
-  <div class="container-xl  p-3">
-    <PostForm />
-    <PostAction />
+  <div>
+    <NavBarreConnect />
+    <div class="container-xl  p-3">
+      <PostForm />
+      <PostAction />
+    </div>
   </div>
 
 
 </template>
 
 <style scoped>
+
 </style>

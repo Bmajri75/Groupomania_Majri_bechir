@@ -1,7 +1,7 @@
 <template>
-  <form id="postForm" method="post" enctype="multipart/form-data">
+  <form id="postForm" method="post" action="api/post" enctype="multipart/form-data">
     <div>
-      <textarea class="form-control" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"
+      <textarea class="form-control" name="commentaire" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"
         v-model="commentaire" />
     </div>
     <br />
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'PostForme',
+  name: 'PostForm',
   data() {
     return {
       image: null,
@@ -32,35 +32,32 @@ export default {
     },
     postValid() {
       const fd = new FormData();
-      fd.append('imageUrl', this.image);
-      fd.append('commentaire', this.commentaire);
+      fd.append('userID', localStorage.getItem('userId'))
+      fd.append('commentaire', this.commentaire)
+      fd.append('imageUrl', this.image)
 
-      console.log(fd);
 
       const token = localStorage.getItem('token');
+      const headers = new Headers();
+      headers.append('Authorization', `Bearer ${token}`);
+      headers.append('Accept', "application/json");
+      headers.append('Content-Type', "multipart/form-data;");
+      headers.append('userid', localStorage.getItem('userId'))
+
+      console.log(fd)
       const options = {
         method: 'POST',
         body: fd,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: headers,
       };
-      fetch('http://localhost:8080/api/post', options)
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error('Erreur lors de l\'envoi du post');
-        })
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      console.log(options)
+      fetch('http://localhost:8080/api/post/', options)
+        .then(response => console.log(response))
+        .then(data => console.log(data))
     },
   },
 };
+
 </script>
 
 <style scoped>

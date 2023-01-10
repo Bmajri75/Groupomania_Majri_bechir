@@ -3,31 +3,26 @@ const fs = require("fs"); // ===> files system
 const postModel = require("../models/Post");
 
 exports.createPost = (req, res, next) => {
-  console.log("LE REQ.BODY ====>  CREE UN POSTE");
-  const postObject = req.body;
-
-  console.log("le POSTE");
-  console.log(postObject);
-
+  console.log("MODULE CONTROLER/POST.js");
+  console.log(req.body);
+  // const postObject = req.body;
   // je crée un nouveau poste à partir de postModel
-  const post = new postModel({
-    ...postObject,
-    userId: req.body.userId,
-    commentaire: req.body.commentaire,
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`, // protocole + nom d'auth / nom de fichier
-  });
+  // const post = new postModel({
+  //   ...postObject,
+  //   userId: req.body.userId,
+  //   commentaire: req.body.commentaire,
+  //   imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file}`, // protocole + nom d'auth / nom de fichier
+  // });
 
-  // j'enregistre le nouveau poste
-  post
-    .save()
-    .then(() => res.status(201).json({ message: "post bien créé" }))
-    .catch((err) =>
-      res
-        .status(400)
-        .json({ message: `erreur sur la création de post ===> ${err}` })
-    );
+  // // j'enregistre le nouveau poste
+  // post
+  // .save()
+  // .then(() => res.status(201).json({ message: "post bien créé" }))
+  // .catch((err) =>
+  //   res
+  //     .status(400)
+  //     .json({ message: `erreur sur la création de post ===> ${err}` })
+  // );
 };
 
 exports.modifyPost = (req, res, next) => {
