@@ -1,5 +1,5 @@
 <template>
-  <form id="postForm" method="post" action="api/post" enctype="multipart/form-data">
+  <form id="postForm" method="post" action="api/post">
     <div>
       <textarea class="form-control" name="commentaire" placeholder="Ecrit ton Message ici ..." id="floatingTextarea"
         v-model="commentaire" />
@@ -37,9 +37,8 @@ export default {
       fd.append('imageUrl', this.image)
 
 
-      const token = localStorage.getItem('token');
       const headers = new Headers();
-      headers.append('Authorization', `Bearer ${token}`);
+      headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
       headers.append('Accept', "application/json");
       headers.append('Content-Type', "multipart/form-data;");
       headers.append('userid', localStorage.getItem('userId'))
